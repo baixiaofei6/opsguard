@@ -1,0 +1,63 @@
+===== 1) opsguard --help =====
+usage: opsguard [-h] [--config CONFIG] [--no-color]
+                {diagnose,explain,fix,rollback,audit,backend,doctor,install-local,integrate}
+                ...
+
+OpsGuard - 可证明安全的 Windows 运维 CLI（诊断/报告解读/带回滚修复）
+
+positional arguments:
+  {diagnose,explain,fix,rollback,audit,backend,doctor,install-local,integrate}
+    diagnose            ① 报错排障：只读诊断，给结论和建议
+    explain             ② 报告解读：脱敏→AI后端→回填→展示
+    fix                 ③ 带回滚修复：诊断→AST→确认→备份→执行→哈希
+    rollback            按 manifest 独立回滚 + 三方哈希验证
+    audit               查审计日志
+    backend             查看/选择 AI 后端状态
+    doctor              环境自检
+    install-local       本地模型安装(官方链接+确认+sha256)
+    integrate           为既有项目生成 --ai 补丁(默认不写回)
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG       指定配置文件路径
+  --no-color            关闭彩色输出
+
+===== 2) opsguard backend =====
+{
+  "cloud":  { "available": false, "mode": "cloud",  "key_configured": false },
+  "local":  { "available": false, "mode": "local",  "base": "http://127.0.0.1:8080/v1" },
+  "rules":  { "available": true,  "mode": "rules" },
+  "effective": "auto"
+}
+
+===== 3) opsguard doctor =====
+[OK]   python             3.12.14
+[OK]   powershell         5.1.26100.8655
+[OK]   pester             v3.4.0
+[WARN] cloud_key          not set -> cloud mode unavailable
+[WARN] local_backend      not running; installed=False
+[OK]   write_permission   C:\Users\Administrator\.dsh\im\opsguard
+[OK]   effective_backend  auto
+
+===== 4) opsguard fix --sample error --confirm n =====
+{
+  "finding": "DNS 服务器被指向不可达地址",
+  "command": "Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses 192.168.1.1",
+  "plain": "将把接口 12 的 DNS 从 203.0.113.254 改为 192.168.1.1.",
+  "diff": {
+    "before":  "DNS Servers: 203.0.113.254 (不可达)",
+    "after":   "DNS Servers: 192.168.1.1 (可用)",
+    "unified": "--- 当前\n+++ 预期\n-DNS Servers: 203.0.113.254 (不可达)\n+DNS Servers: 192.168.1.1 (可用)"
+  },
+  "ast_verdict": "require_confirm",
+  "ast_reason": "白名单命中: Set-DnsClientServerAddress (tier=require_confirm)",
+  "policy_decision": "confirm_required",
+  "mode": "DRY-RUN",
+  "target": "sandbox-fixture"
+}
+[exit=1]  # 1 = 需人工确认，默认不执行
+
+===== 环境说明（本机实测）=====
+Python 3.12.14 · PowerShell 5.1.26100.8655 · Pester v3.4.0
+云端 Key 未配、本地后端未运行 → 当前有效后端 auto 会降级到 rules（离线规则模式）
+fix 默认 DRY-RUN 打假靶子；要真改系统需 --live --confirm y

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>OpsGuard · 视觉方案预览</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2128; --border:#30363d;
+    --text:#c9d1d9; --muted:#8b949e; --bright:#e6edf3;
+    --green:#3fb950; --yellow:#d29922; --red:#f85149; --blue:#58a6ff; --gray:#6e7681;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Microsoft YaHei",monospace;
+    padding:28px 32px 40px;line-height:1.55}
+  h1{font-size:17px;color:var(--bright);margin:0 0 4px;font-weight:600}
+  .sub{color:var(--muted);font-size:12px;margin-bottom:24px}
+  .sec{margin-bottom:26px}
+  .sec-h{display:flex;align-items:center;gap:10px;margin:0 0 10px}
+  .tag{font-size:11px;padding:2px 8px;border:1px solid var(--border);border-radius:20px;color:var(--muted)}
+  .rec{color:var(--green);border-color:#1f6f37;background:#12261a}
+  .sec-t{font-size:13px;color:var(--bright);font-weight:600}
+  .win{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;max-width:920px}
+  .bar{background:var(--panel2);border-bottom:1px solid var(--border);padding:7px 12px;font-size:11px;color:var(--muted);display:flex;gap:6px;align-items:center}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .body{padding:14px 16px;font-size:12.5px}
+  .row{display:flex;gap:12px;padding:5px 0;align-items:flex-start}
+  .lab{flex:0 0 92px;font-weight:600;font-size:11px;padding-top:1px}
+  .g{color:var(--green)} .y{color:var(--yellow)} .r{color:var(--red)} .b{color:var(--blue)} .m{color:var(--muted)}
+  .cmd{color:var(--bright)}
+  .desc{color:var(--muted);font-size:11.5px}
+  .prompt{margin-top:12px;padding-top:10px;border-top:1px dashed var(--border);color:var(--yellow)}
+  .cur{display:inline-block;width:7px;height:14px;background:var(--yellow);vertical-align:-2px;animation:bl 1s steps(1) infinite}
+  @keyframes bl{50%{opacity:0}}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:920px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px}
+  .card h3{margin:0 0 10px;font-size:12px;color:var(--blue);font-weight:600}
+  .kv{display:flex;justify-content:space-between;font-size:11px;padding:3px 0;border-bottom:1px solid #21262d}
+  .kv:last-child{border:none}
+  .kv span:last-child{color:var(--bright)}
+  .ok{color:var(--green)}
+  .diff{background:var(--panel);border:1px solid var(--border);border-radius:8px;max-width:920px;padding:14px 16px;font-size:12.5px}
+  .minus{color:var(--red);background:#2d1418;display:block;padding:1px 8px;border-radius:3px}
+  .plus{color:var(--green);background:#12261a;display:block;padding:1px 8px;border-radius:3px}
+  .human{margin-top:10px;color:var(--text);font-size:11.5px;border-left:2px solid var(--blue);padding-left:10px}
+  .note{color:var(--muted);font-size:11px;margin-top:6px}
+  .foot{border-top:1px solid var(--border);margin-top:8px;padding-top:12px;color:var(--muted);font-size:11px}
+</style>
+</head>
+<body>
+  <h1>OpsGuard · 视觉方案预览（推荐组合 A）</h1>
+  <div class="sub">三处待拍板项的推荐效果图 · 参考 Claude Code 权限提示 / Codex 桌面端 / Shannot 审阅 TUI / Hunk diff 布局的克制风格</div>
+
+  <div class="sec">
+    <div class="sec-h">
+      <span class="tag rec">方案 A · 推荐</span>
+      <span class="sec-t">① 确认门 · 安全仪表盘配色（备选：B 极简单色 / C 审计日志风）</span>
+    </div>
+    <div class="win">
+      <div class="bar"><span class="dot" style="background:#f85149"></span><span class="dot" style="background:#d29922"></span><span class="dot" style="background:#3fb950"></span><span style="margin-left:8px">opsguard · confirm</span></div>
+      <div class="body">
+        <div class="row"><span class="lab g">[READONLY]</span><span><span class="cmd">Get-DnsClientServerAddress</span><br><span class="desc">只读采集当前 DNS 配置 · 自动执行</span></span></div>
+        <div class="row"><span class="lab y">[CONFIRM]</span><span><span class="cmd">Set-DnsClientServerAddress -InterfaceIndex 12 ...</span><br><span class="desc">将接口 Ethernet0 的 DNS 从 8.8.8.8 改为 223.5.5.5</span></span></div>
+        <div class="row"><span class="lab r">[DENY]</span><span><span class="cmd">Remove-Service -Name Spooler</span><br><span class="desc">命中禁止清单：删除服务（用户确认也不放行）</span></span></div>
+        <div class="row"><span class="lab b">[ROLLBACK]</span><span><span class="desc">备份:</span> C:\opsguard\backup\20261123-001500.json<br><span class="desc">回滚命令:</span> <span class="cmd">opsguard rollback --id 0015</span></span></div>
+        <div class="prompt">确认执行？[y/N]: <span class="cur"></span></div>
+      </div>
+    </div>
+    <div class="note">红=禁止/危险 · 黄=需确认 · 绿=只读/通过 · 灰蓝=备份与日志。终端无色彩时降级为纯文字标签。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">
+      <span class="tag rec">方案 A · 推荐</span>
+      <span class="sec-t">② README / demo · 深色终端 + 三栏证据卡（备选：B 浅色文档 / C 黑白审计风）</span>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>· AST 判定 ·</h3>
+        <div class="kv"><span>命令</span><span>Set-DnsClient...</span></div>
+        <div class="kv"><span>判定</span><span class="y">require_confirm</span></div>
+        <div class="kv"><span>命中节点</span><span>CommandAst</span></div>
+        <div class="kv"><span>理由</span><span>白名单修改类</span></div>
+      </div>
+      <div class="card">
+        <h3>· diff ·</h3>
+        <div class="kv"><span>目标</span><span>Ethernet0</span></div>
+        <div class="kv"><span>变更前</span><span class="r">8.8.8.8</span></div>
+        <div class="kv"><span>变更后</span><span class="g">223.5.5.5</span></div>
+        <div class="kv"><span>备份</span><span class="ok">已生成</span></div>
+      </div>
+      <div class="card">
+        <h3>· 回滚哈希 ·</h3>
+        <div class="kv"><span>操作前</span><span>a1f3…9c2e</span></div>
+        <div class="kv"><span>操作后</span><span>7b90…1d44</span></div>
+        <div class="kv"><span>回滚后</span><span>a1f3…9c2e</span></div>
+        <div class="kv"><span>验证</span><span class="ok">还原已验证 ✓</span></div>
+      </div>
+    </div>
+    <div class="note">证据上镜、克制不花哨；深色为终端主画面，浅色场景另配截图表格。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">
+      <span class="tag rec">方案 A · 推荐</span>
+      <span class="sec-t">③ diff 展示 · unified diff + 一句人话（备选：B 左右对照 / C JSON patch）</span>
+    </div>
+    <div class="diff">
+      <span class="minus">- DNS Servers : 8.8.8.8</span>
+      <span class="plus">+ DNS Servers : 223.5.5.5</span>
+      <div class="human">将把接口 Ethernet0 的 DNS 从 8.8.8.8 改为 223.5.5.5，改前已备份，可一键回滚。</div>
+    </div>
+  </div>
+
+  <div class="foot">以上三处均按方案 A 推荐。你 5 分钟内没回复，我按 A 组合拍板，并让子任务照此推进阶段 B，同时把决策与理由一并告知你。</div>
+</body>
+</html>

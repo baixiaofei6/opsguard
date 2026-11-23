@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>WinDeploy 自检报告（样本）</title>
+<style>
+  body { font-family: Consolas, monospace; background: #0f1720; color: #d7e0ea; margin: 2rem; }
+  h1 { color: #6cc0ff; }
+  pre { background: #16212e; padding: 12px; border-radius: 6px; }
+  footer { margin-top: 2rem; color: #8a97a6; font-size: 12px; }
+</style>
+</head>
+<body>
+<h1>WinDeploy-Kit 部署自检 · 样本</h1>
+<p><strong>样本，非真实项目产物。</strong>本页为 OpsGuard C1 --ai 自包含演示用的深色样本报告，模拟 WinDeploy 自检输出。</p>
+<pre>[SELFTEST] host=DEPLOY-WIN-01  mac=AA:BB:CC:DD:EE:FF
+[DNS] server=172.16.0.9  status=UNREACHABLE
+[RESULT] 1 error, 1 warning</pre>
+<footer>样本报告 · OpsGuard C1 演示专用</footer>
+
+<script type="application/json" id="opsguard-evidence">
+{
+  "source": "WinDeploy-Kit（深色样本）",
+  "hosts": ["DEPLOY-WIN-01"],
+  "findings": [
+    {
+      "id": "DEP-007",
+      "title": "部署后 DNS 服务器不可达",
+      "level": "high",
+      "detail": "主机 DEPLOY-WIN-01（MAC AA:BB:CC:DD:EE:FF）自检发现 DNS 172.16.0.9 不可达，可能导致后续域名解析失败。",
+      "current": "DNS Servers: 172.16.0.9",
+      "expected": "DNS Servers: 172.16.0.2",
+      "hint": "主网卡",
+      "intent": "require_confirm",
+      "suggest": "人工确认后把主网卡 DNS 172.16.0.9 改为 172.16.0.2"
+    },
+    {
+      "id": "DEP-012",
+      "title": "Cisco 交换机 MAC 记录格式不统一",
+      "level": "medium",
+      "detail": "上游交换机端口记录 MAC 为 AABB.CCDD.EEFF，与主机上报的 AA:BB:CC:DD:EE:FF 为同一设备，格式不同。",
+      "current": "",
+      "expected": "",
+      "hint": "",
+      "intent": "readonly",
+      "suggest": "只读核对，统一 MAC 记录格式"
+    }
+  ]
+}
+</script>
+<section id="opsguard-ai" data-theme="dark"><style>#opsguard-ai{font-family:system-ui,Segoe UI,sans-serif;margin:2rem 0;border-radius:10px;padding:1.2rem;}#opsguard-ai .og-wrap{max-width:1100px;margin:auto;}#opsguard-ai h2{margin:0 0 .4rem;font-size:1.35rem;}#opsguard-ai .og-badge{font-size:.72rem;border:1px solid currentColor;border-radius:999px;padding:1px 8px;vertical-align:middle;}#opsguard-ai pre{white-space:pre-wrap;word-break:break-word;padding:.7rem;border-radius:6px;margin:.3rem 0 0;}#opsguard-ai .og-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}#opsguard-ai .og-card{border:1px solid;border-radius:8px;padding:.7rem;min-width:0;}#opsguard-ai .og-card-h{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;}#opsguard-ai .og-tag{font-size:.75rem;border-radius:4px;padding:1px 6px;border:1px solid currentColor;}#opsguard-ai .og-human{font-size:.9rem;margin:.3rem 0;}#opsguard-ai .og-diff{font-family:Consolas,monospace;font-size:.8rem;}#opsguard-ai .og-muted{opacity:.7;}#opsguard-ai .og-finding{border-top:1px dashed;padding:.9rem 0;}#opsguard-ai .og-summary,#opsguard-ai .og-risk,#opsguard-ai .og-actions,#opsguard-ai .og-payload{margin:.8rem 0;}#opsguard-ai .og-note,#opsguard-ai .og-mode,#opsguard-ai .og-foot{font-size:.82rem;opacity:.85;}@media print{#opsguard-ai .og-cards{grid-template-columns:1fr;}}#opsguard-ai{background:#111c28;color:#d7e0ea;border:1px solid #24384b;}#opsguard-ai pre,#opsguard-ai .og-card{background:#16212e;border-color:#24384b;}#opsguard-ai .og-tag.ro{color:#5fd08a;}#opsguard-ai .og-tag.confirm{color:#f0c75e;}#opsguard-ai .og-tag.deny{color:#ff7b7b;}#opsguard-ai .og-tag.log{color:#9fb3c8;}</style><div class="og-wrap"><h2>OpsGuard · AI 报告解读 <span class="og-badge">样本演示</span></h2><p class="og-note">样本，非真实项目产物。本段落为 C1 演示追加，改造既有项目需用户另行授权。</p><p class="og-mode">离线规则模式（无 Key）：未连接云端模型、未实际出网、脱敏不报错；下列 payload 为脱敏管线样例，证明若有 Key 出网内容不含原始 IP/MAC/主机名。</p><div class="og-summary"><strong>人话总结</strong><pre>当前为本地规则生成，未连接云端模型（离线规则模式）。
+本次共 2 项发现，其中高风险 1 项。
+输入证据已经出网唯一出口脱敏，占位符保留关联关系。</pre></div><div class="og-risk"><strong>风险排序</strong><ol><li>部署后 DNS 服务器不可达（高）</li><li>Cisco 交换机 MAC 记录格式不统一（中）</li></ol></div><div class="og-actions"><strong>建议动作</strong><pre>人工确认后把主网卡 DNS 172.16.0.9 改为 172.16.0.2
+只读核对，统一 MAC 记录格式</pre></div><details class="og-payload"><summary>出网 payload（脱敏后，供审计）</summary><pre>编号:DEP-007 结论:部署后 DNS 服务器不可达 级别:high 证据:主机 [HOST_1]（MAC [MAC_1]）自检发现 DNS [IP_1] 不可达，可能导致后续域名解析失败。 建议:人工确认后把主网卡 DNS [IP_1] 改为 [IP_2]
+编号:DEP-012 结论:Cisco 交换机 MAC 记录格式不统一 级别:medium 证据:上游交换机端口记录 MAC 为 [MAC_2]，与主机上报的 [MAC_1] 为同一设备，格式不同。 建议:只读核对，统一 MAC 记录格式</pre></details><div class="og-findings"><div class="og-finding"><h3>部署后 DNS 服务器不可达</h3><p class="og-human">一句话：编号:DEP-007 结论:部署后 DNS 服务器不可达 级别:high 证据:主机 DEPLOY-WIN-01（MAC AA:BB:CC:DD:EE:FF）自检发现 DNS 172.16.0.9 不可达，可能导致后续域名解析失败。 建议:人工确认后把主网卡 DNS 172.16.0.9 改为 172.16.0.2</p><div class="og-cards"><article class="og-card"><div class="og-card-h"><span class="og-tag confirm">[需确认]</span><strong>三态判定</strong></div><div class="og-card-b">风险等级：高<br>命中节点：证据 部署后 DNS 服务器不可达</div></article><article class="og-card"><div class="og-card-h"><span class="og-tag confirm">[需确认]</span><strong>配置 diff</strong></div><div class="og-card-b"><pre class="og-diff">--- -当前
++++ +预期
+@@ -1 +1 @@
+-DNS Servers: 172.16.0.9
++DNS Servers: 172.16.0.2</pre>
+<p class="og-human">将把接口 主网卡 的配置从 DNS Servers: 172.16.0.9 改为 DNS Servers: 172.16.0.2。</p></div></article><article class="og-card"><div class="og-card-h"><span class="og-tag log">[日志]</span><strong>回滚证据</strong></div><div class="og-card-b">本阶段为样本演示，真实三方哈希验证在 C3 提供。<br><br><span class="og-muted">预演不是沙箱。</span></div></article></div></div><div class="og-finding"><h3>Cisco 交换机 MAC 记录格式不统一</h3><p class="og-human">一句话：编号:DEP-012 结论:Cisco 交换机 MAC 记录格式不统一 级别:medium 证据:上游交换机端口记录 MAC 为 AABB.CCDD.EEFF，与主机上报的 AA:BB:CC:DD:EE:FF 为同一设备，格式不同。 建议:只读核对，统一 MAC 记录格式</p><div class="og-cards"><article class="og-card"><div class="og-card-h"><span class="og-tag ro">[只读]</span><strong>三态判定</strong></div><div class="og-card-b">风险等级：中<br>命中节点：证据 Cisco 交换机 MAC 记录格式不统一</div></article><article class="og-card"><div class="og-card-h"><span class="og-tag ro">[只读]</span><strong>配置 diff</strong></div><div class="og-card-b">（本项无需配置变更）</div></article><article class="og-card"><div class="og-card-h"><span class="og-tag log">[日志]</span><strong>回滚证据</strong></div><div class="og-card-b">本阶段为样本演示，真实三方哈希验证在 C3 提供。<br><br><span class="og-muted">预演不是沙箱。</span></div></article></div></div></div><p class="og-foot">生成时间 2026-11-24 01:06:23 · 本地规则引擎 · 零依赖</p></div></section>
+</body>
+</html>

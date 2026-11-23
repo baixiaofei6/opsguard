@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>WinDeploy 自检报告（样本）</title>
+<style>
+  body { font-family: Consolas, monospace; background: #0f1720; color: #d7e0ea; margin: 2rem; }
+  h1 { color: #6cc0ff; }
+  pre { background: #16212e; padding: 12px; border-radius: 6px; }
+  footer { margin-top: 2rem; color: #8a97a6; font-size: 12px; }
+</style>
+</head>
+<body>
+<h1>WinDeploy-Kit 部署自检 · 样本</h1>
+<p><strong>样本，非真实项目产物。</strong>本页为 OpsGuard C1 --ai 自包含演示用的深色样本报告，模拟 WinDeploy 自检输出。</p>
+<pre>[SELFTEST] host=DEPLOY-WIN-01  mac=AA:BB:CC:DD:EE:FF
+[DNS] server=172.16.0.9  status=UNREACHABLE
+[RESULT] 1 error, 1 warning</pre>
+<footer>样本报告 · OpsGuard C1 演示专用</footer>
+
+<script type="application/json" id="opsguard-evidence">
+{
+  "source": "WinDeploy-Kit（深色样本）",
+  "hosts": ["DEPLOY-WIN-01"],
+  "findings": [
+    {
+      "id": "DEP-007",
+      "title": "部署后 DNS 服务器不可达",
+      "level": "high",
+      "detail": "主机 DEPLOY-WIN-01（MAC AA:BB:CC:DD:EE:FF）自检发现 DNS 172.16.0.9 不可达，可能导致后续域名解析失败。",
+      "current": "DNS Servers: 172.16.0.9",
+      "expected": "DNS Servers: 172.16.0.2",
+      "hint": "主网卡",
+      "intent": "require_confirm",
+      "suggest": "人工确认后把主网卡 DNS 172.16.0.9 改为 172.16.0.2"
+    },
+    {
+      "id": "DEP-012",
+      "title": "Cisco 交换机 MAC 记录格式不统一",
+      "level": "medium",
+      "detail": "上游交换机端口记录 MAC 为 AABB.CCDD.EEFF，与主机上报的 AA:BB:CC:DD:EE:FF 为同一设备，格式不同。",
+      "current": "",
+      "expected": "",
+      "hint": "",
+      "intent": "readonly",
+      "suggest": "只读核对，统一 MAC 记录格式"
+    }
+  ]
+}
+</script>
+</body>
+</html>

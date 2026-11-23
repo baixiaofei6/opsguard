@@ -1,0 +1,18 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><style>*{box-sizing:border-box}html,body{margin:0;padding:0}body{background:#0d1117;padding:18px 16px;font-family:"SFMono-Regular",Consolas,"Cascadia Mono","Microsoft YaHei",monospace;font-size:15px;line-height:1.5;white-space:pre;overflow-x:hidden}</style></head><body><pre style="margin:0;font:inherit;white-space:pre"><span style="color:#a8b9eb;font-weight:700;">  OpsGuard 主命令输入 · Claude Code 风格行编辑</span>
+
+<span style="color:#56b6c2;font-weight:700;">  ① 输入 ab</span>
+<span style="color:#a8b9eb;font-weight:700;">  ❯ </span><span style="color:#f0f6fc;">ab│</span>
+<span style="color:#6e7681;">  向左移动光标后插入 X —— 光标位置就是 │</span>
+
+<span style="color:#56b6c2;font-weight:700;">  ② ← 移光标到中间，插入 X</span>
+<span style="color:#a8b9eb;font-weight:700;">  ❯ </span><span style="color:#f0f6fc;">aX│b</span>
+<span style="color:#6e7681;">  向左移动光标后插入 X —— 光标位置就是 │</span>
+
+<span style="color:#56b6c2;font-weight:700;">  ③ Ctrl+A 跳到行首</span>
+<span style="color:#a8b9eb;font-weight:700;">  ❯ </span><span style="color:#f0f6fc;">│aXb</span>
+<span style="color:#6e7681;">  向左移动光标后插入 X —— 光标位置就是 │</span>
+
+<span style="color:#8b949e;font-weight:700;">  键位（官方文档 interactive-mode）：</span>
+<span style="color:#8b949e;">    ←→ 移光标 · ↑↓ 翻历史 · Home/End · Ctrl+A/E 行首/行尾</span>
+<span style="color:#8b949e;">    Ctrl+K/U/W 剪切 · Ctrl+Y 粘贴 · Alt+B/F 按词 · Ctrl+R 反搜 · Esc 清空</span>
+<span style="color:#6e7681;">    Enter 提交 · 非交互/管道走普通 readline 兼容</span></pre></body></html>

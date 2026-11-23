@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>lan-ops-scan 内网巡检报告（样本）</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #f7f9fc; color: #1f2933; margin: 2rem; }
+  h1 { color: #1f4e79; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #d0d7de; padding: 6px 10px; text-align: left; }
+  footer { margin-top: 2rem; color: #6b7280; font-size: 12px; }
+</style>
+</head>
+<body>
+<h1>内网巡检报告 · 样本</h1>
+<p><strong>样本，非真实项目产物。</strong>本页为 OpsGuard C1 --ai 自包含演示用的浅色样本报告，模拟 lan-ops-scan 输出，用于演示脱敏与追加段落渲染。</p>
+<table>
+  <tr><th>项目</th><th>取值</th></tr>
+  <tr><td>巡检主机</td><td>WIN-CLIENT-17</td></tr>
+  <tr><td>管理网卡 MAC</td><td>00-1A-2B-3C-4D-5E</td></tr>
+  <tr><td>DNS 服务器</td><td>10.10.0.53</td></tr>
+  <tr><td>结果</td><td>发现 2 项异常</td></tr>
+</table>
+<footer>样本报告 · OpsGuard C1 演示专用</footer>
+
+<script type="application/json" id="opsguard-evidence">
+{
+  "source": "lan-ops-scan（浅色样本）",
+  "hosts": ["WIN-CLIENT-17", "win-client-17.office.local"],
+  "findings": [
+    {
+      "id": "LAN-014",
+      "title": "DNS 服务器指向不可达地址",
+      "level": "high",
+      "detail": "主机 WIN-CLIENT-17（MAC 00-1A-2B-3C-4D-5E）的接口 DNS 服务器 10.10.0.53 连续 3 次探测超时，疑似配置错误。",
+      "current": "DNS Servers: 10.10.0.53",
+      "expected": "DNS Servers: 192.168.1.1",
+      "hint": "Ethernet",
+      "intent": "require_confirm",
+      "suggest": "人工确认后把接口 Ethernet 的 DNS 改回网关 192.168.1.1"
+    },
+    {
+      "id": "LAN-021",
+      "title": "主机名为 FQDN 与短名混用",
+      "level": "low",
+      "detail": "巡检记录中 WIN-CLIENT-17 与 win-client-17.office.local 指向同一主机，建议统一命名口径。",
+      "current": "",
+      "expected": "",
+      "hint": "",
+      "intent": "readonly",
+      "suggest": "只读核对资产台账，统一使用 FQDN"
+    }
+  ]
+}
+</script>
+<section id="opsguard-ai" data-theme="light"><style>#opsguard-ai{font-family:system-ui,Segoe UI,sans-serif;margin:2rem 0;border-radius:10px;padding:1.2rem;}#opsguard-ai .og-wrap{max-width:1100px;margin:auto;}#opsguard-ai h2{margin:0 0 .4rem;font-size:1.35rem;}#opsguard-ai .og-badge{font-size:.72rem;border:1px solid currentColor;border-radius:999px;padding:1px 8px;vertical-align:middle;}#opsguard-ai pre{white-space:pre-wrap;word-break:break-word;padding:.7rem;border-radius:6px;margin:.3rem 0 0;}#opsguard-ai .og-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}#opsguard-ai .og-card{border:1px solid;border-radius:8px;padding:.7rem;min-width:0;}#opsguard-ai .og-card-h{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;}#opsguard-ai .og-tag{font-size:.75rem;border-radius:4px;padding:1px 6px;border:1px solid currentColor;}#opsguard-ai .og-human{font-size:.9rem;margin:.3rem 0;}#opsguard-ai .og-diff{font-family:Consolas,monospace;font-size:.8rem;}#opsguard-ai .og-muted{opacity:.7;}#opsguard-ai .og-finding{border-top:1px dashed;padding:.9rem 0;}#opsguard-ai .og-summary,#opsguard-ai .og-risk,#opsguard-ai .og-actions,#opsguard-ai .og-payload{margin:.8rem 0;}#opsguard-ai .og-note,#opsguard-ai .og-mode,#opsguard-ai .og-foot{font-size:.82rem;opacity:.85;}@media print{#opsguard-ai .og-cards{grid-template-columns:1fr;}}#opsguard-ai{background:#eef4fb;color:#1f2933;border:1px solid #c7d7e8;}#opsguard-ai pre,#opsguard-ai .og-card{background:#fff;border-color:#d0d7de;}#opsguard-ai .og-tag.ro{color:#176b3a;}#opsguard-ai .og-tag.confirm{color:#8a5a00;}#opsguard-ai .og-tag.deny{color:#a11;}#opsguard-ai .og-tag.log{color:#44546a;}</style><div class="og-wrap"><h2>OpsGuard · AI 报告解读 <span class="og-badge">样本演示</span></h2><p class="og-note">样本，非真实项目产物。本段落为 C1 演示追加，改造既有项目需用户另行授权。</p><p class="og-mode">离线规则模式（无 Key）：未连接云端模型、未实际出网、脱敏不报错；下列 payload 为脱敏管线样例，证明若有 Key 出网内容不含原始 IP/MAC/主机名。</p><div class="og-summary"><strong>人话总结</strong><pre>当前为本地规则生成，未连接云端模型（离线规则模式）。
+本次共 2 项发现，其中高风险 1 项。
+输入证据已经出网唯一出口脱敏，占位符保留关联关系。</pre></div><div class="og-risk"><strong>风险排序</strong><ol><li>DNS 服务器指向不可达地址（高）</li><li>主机名为 FQDN 与短名混用（低）</li></ol></div><div class="og-actions"><strong>建议动作</strong><pre>人工确认后把接口 Ethernet 的 DNS 改回网关 192.168.1.1
+只读核对资产台账，统一使用 FQDN</pre></div><details class="og-payload"><summary>出网 payload（脱敏后，供审计）</summary><pre>编号:LAN-014 结论:DNS 服务器指向不可达地址 级别:high 证据:主机 [HOST_2]（MAC [MAC_1]）的接口 DNS 服务器 [IP_1] 连续 3 次探测超时，疑似配置错误。 建议:人工确认后把接口 Ethernet 的 DNS 改回网关 [IP_2]
+编号:LAN-021 结论:主机名为 FQDN 与短名混用 级别:low 证据:巡检记录中 [HOST_2] 与 [HOST_1] 指向同一主机，建议统一命名口径。 建议:只读核对资产台账，统一使用 FQDN</pre></details><div class="og-findings"><div class="og-finding"><h3>DNS 服务器指向不可达地址</h3><p class="og-human">一句话：编号:LAN-014 结论:DNS 服务器指向不可达地址 级别:high 证据:主机 WIN-CLIENT-17（MAC 00-1A-2B-3C-4D-5E）的接口 DNS 服务器 10.10.0.53 连续 3 次探测超时，疑似配置错误。 建议:人工确认后把接口 Ethernet 的 DNS 改回网关 192.168.1.1</p><div class="og-cards"><article class="og-card"><div class="og-card-h"><span class="og-tag confirm">[需确认]</span><strong>三态判定</strong></div><div class="og-card-b">风险等级：高<br>命中节点：证据 DNS 服务器指向不可达地址</div></article><article class="og-card"><div class="og-card-h"><span class="og-tag confirm">[需确认]</span><strong>配置 diff</strong></div><div class="og-card-b"><pre class="og-diff">--- -当前
++++ +预期
+@@ -1 +1 @@
+-DNS Servers: 10.10.0.53
++DNS Servers: 192.168.1.1</pre>
+<p class="og-human">将把接口 Ethernet 的配置从 DNS Servers: 10.10.0.53 改为 DNS Servers: 192.168.1.1。</p></div></article><article class="og-card"><div class="og-card-h"><span class="og-tag log">[日志]</span><strong>回滚证据</strong></div><div class="og-card-b">本阶段为样本演示，真实三方哈希验证在 C3 提供。<br><br><span class="og-muted">预演不是沙箱。</span></div></article></div></div><div class="og-finding"><h3>主机名为 FQDN 与短名混用</h3><p class="og-human">一句话：编号:LAN-021 结论:主机名为 FQDN 与短名混用 级别:low 证据:巡检记录中 WIN-CLIENT-17 与 win-client-17.office.local 指向同一主机，建议统一命名口径。 建议:只读核对资产台账，统一使用 FQDN</p><div class="og-cards"><article class="og-card"><div class="og-card-h"><span class="og-tag ro">[只读]</span><strong>三态判定</strong></div><div class="og-card-b">风险等级：低<br>命中节点：证据 主机名为 FQDN 与短名混用</div></article><article class="og-card"><div class="og-card-h"><span class="og-tag ro">[只读]</span><strong>配置 diff</strong></div><div class="og-card-b">（本项无需配置变更）</div></article><article class="og-card"><div class="og-card-h"><span class="og-tag log">[日志]</span><strong>回滚证据</strong></div><div class="og-card-b">本阶段为样本演示，真实三方哈希验证在 C3 提供。<br><br><span class="og-muted">预演不是沙箱。</span></div></article></div></div></div><p class="og-foot">生成时间 2026-11-24 01:06:23 · 本地规则引擎 · 零依赖</p></div></section>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "backend": "auto",
+  "api_base": "https://api.openai.com/v1",
+  "api_key_env": "OPSGUARD_API_KEY",
+  "log_path": "logs/opsguard.log",
+  "confirm_default": "no",
+  "timeout_sec": 30
+}

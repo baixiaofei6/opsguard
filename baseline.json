@@ -1,0 +1,1709 @@
+﻿{
+    "scannedAt":  "2026-11-22T16:53:48.4432826Z",
+    "note":  "OpsGuard outside-task baseline; rerun at delivery into baseline-final.json and diff",
+    "targets":  [
+                    {
+                        "path":  "E:\\文档\\deepseek-harness\\default-workspace\\windeploy-kit",
+                        "files":  [
+                                      {
+                                          "rel":  ".gitignore",
+                                          "len":  186,
+                                          "sha":  "7744B8243E73336F",
+                                          "mtime":  "2026-11-22T04:52:30.3001171Z"
+                                      },
+                                      {
+                                          "rel":  "LICENSE",
+                                          "len":  1083,
+                                          "sha":  "4AAB63D7E5D284E5",
+                                          "mtime":  "2026-11-22T02:34:43.5368378Z"
+                                      },
+                                      {
+                                          "rel":  "PSScriptAnalyzerSettings.psd1",
+                                          "len":  536,
+                                          "sha":  "DACA764FF4244F80",
+                                          "mtime":  "2026-11-22T04:23:45.7161302Z"
+                                      },
+                                      {
+                                          "rel":  "README.md",
+                                          "len":  9431,
+                                          "sha":  "6715F4276E90189F",
+                                          "mtime":  "2026-11-22T04:48:36.2724978Z"
+                                      },
+                                      {
+                                          "rel":  "WinDeploy.ps1",
+                                          "len":  12283,
+                                          "sha":  "44168C03CCFB95F3",
+                                          "mtime":  "2026-11-22T04:44:23.2768038Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\COMMIT_EDITMSG",
+                                          "len":  66,
+                                          "sha":  "E5AE4EE93C0AAA14",
+                                          "mtime":  "2026-11-22T04:52:31.3557109Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\config",
+                                          "len":  168,
+                                          "sha":  "63C31EA212F2AD81",
+                                          "mtime":  "2026-11-22T04:52:22.3536424Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\description",
+                                          "len":  73,
+                                          "sha":  "85AB6C163D43A17E",
+                                          "mtime":  "2026-11-22T04:52:22.2356454Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\HEAD",
+                                          "len":  21,
+                                          "sha":  "28D25BF82AF4C0E2",
+                                          "mtime":  "2026-11-22T04:52:22.2526457Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\index",
+                                          "len":  3818,
+                                          "sha":  "24025D68CF96144E",
+                                          "mtime":  "2026-11-22T04:52:31.3527090Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\applypatch-msg.sample",
+                                          "len":  478,
+                                          "sha":  "0223497A0B8B033A",
+                                          "mtime":  "2026-11-22T04:52:22.2366437Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\commit-msg.sample",
+                                          "len":  1972,
+                                          "sha":  "EFC1401B0E99D1FF",
+                                          "mtime":  "2026-11-22T04:52:22.2366437Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\fsmonitor-watchman.sample",
+                                          "len":  4611,
+                                          "sha":  "9159720099AD5595",
+                                          "mtime":  "2026-11-22T04:52:22.2366437Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\post-update.sample",
+                                          "len":  189,
+                                          "sha":  "81765AF2DAEF3230",
+                                          "mtime":  "2026-11-22T04:52:22.2376434Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-applypatch.sample",
+                                          "len":  424,
+                                          "sha":  "E15C5B469EA3E0A6",
+                                          "mtime":  "2026-11-22T04:52:22.2386436Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-commit.sample",
+                                          "len":  1649,
+                                          "sha":  "57185B7B9F05239D",
+                                          "mtime":  "2026-11-22T04:52:22.2386436Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-merge-commit.sample",
+                                          "len":  416,
+                                          "sha":  "D3825A70337940EB",
+                                          "mtime":  "2026-11-22T04:52:22.2396437Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-push.sample",
+                                          "len":  1374,
+                                          "sha":  "ECCE9C7E04D3F5DD",
+                                          "mtime":  "2026-11-22T04:52:22.2396437Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-rebase.sample",
+                                          "len":  4898,
+                                          "sha":  "4FEBCE8677900523",
+                                          "mtime":  "2026-11-22T04:52:22.2396437Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-receive.sample",
+                                          "len":  544,
+                                          "sha":  "A4C3D2B9C7BB3FD8",
+                                          "mtime":  "2026-11-22T04:52:22.2406440Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\prepare-commit-msg.sample",
+                                          "len":  1492,
+                                          "sha":  "E9DDCAA4189FDDD2",
+                                          "mtime":  "2026-11-22T04:52:22.2406440Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\push-to-checkout.sample",
+                                          "len":  2783,
+                                          "sha":  "A53D0741798B287C",
+                                          "mtime":  "2026-11-22T04:52:22.2416450Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\sendemail-validate.sample",
+                                          "len":  2308,
+                                          "sha":  "44EBFC923DC5466B",
+                                          "mtime":  "2026-11-22T04:52:22.2416450Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\update.sample",
+                                          "len":  3650,
+                                          "sha":  "8D5F2FA83E103CF0",
+                                          "mtime":  "2026-11-22T04:52:22.2426441Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\info\\exclude",
+                                          "len":  240,
+                                          "sha":  "6671FE83B7A07C89",
+                                          "mtime":  "2026-11-22T04:52:22.2426441Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\logs\\HEAD",
+                                          "len":  424,
+                                          "sha":  "D79CEAF2C2173924",
+                                          "mtime":  "2026-11-22T04:52:31.3607111Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\logs\\refs\\heads\\main",
+                                          "len":  424,
+                                          "sha":  "D79CEAF2C2173924",
+                                          "mtime":  "2026-11-22T04:52:31.3607111Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\09\\6c5f0464bc882d763696b6ed92701c6c343a73",
+                                          "len":  134,
+                                          "sha":  "FAA240F13CD9ACB9",
+                                          "mtime":  "2026-11-22T04:52:22.6426422Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\0b\\ce72338f5d6815bfed28b43332c9b49141fa98",
+                                          "len":  1820,
+                                          "sha":  "942723E214D67219",
+                                          "mtime":  "2026-11-22T04:52:22.5746460Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\0f\\f8bfb415ca599fe3fd1cbde3f2a58db9896759",
+                                          "len":  149,
+                                          "sha":  "023A00A6D6E64C7B",
+                                          "mtime":  "2026-11-22T04:52:48.1009664Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\13\\4e3aa4a5edb867db18b929a99827a314afad67",
+                                          "len":  52,
+                                          "sha":  "64BB9190535F6650",
+                                          "mtime":  "2026-11-22T04:52:22.6396422Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\1c\\5bb35261914940b628ca65ec46d5ab7f12ec6e",
+                                          "len":  1282,
+                                          "sha":  "4BF957BAFDEB74B6",
+                                          "mtime":  "2026-11-22T04:52:22.5426450Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\1f\\198f1a0b32942d4e03cc944383b61f63b2b9c4",
+                                          "len":  50,
+                                          "sha":  "0716BD5C5B84B534",
+                                          "mtime":  "2026-11-22T04:52:22.6306456Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\29\\c01141e60fae20768f18a9008f48843e4b404c",
+                                          "len":  5959,
+                                          "sha":  "AFF12AFF104496E7",
+                                          "mtime":  "2026-11-22T04:52:22.5346436Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\2f\\2c400261b2447adeb291c6aa27643d7ebadbe1",
+                                          "len":  264,
+                                          "sha":  "420668E2387CD0C3",
+                                          "mtime":  "2026-11-22T04:52:22.5166421Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\37\\def61a6f0a5b8824ff5b87357aee26538432fe",
+                                          "len":  352,
+                                          "sha":  "1692E23D08C94C65",
+                                          "mtime":  "2026-11-22T04:52:22.6516426Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\39\\9983cdf0d291cb585dcbfd2e89c43ff210175c",
+                                          "len":  368,
+                                          "sha":  "FB87ED6619FBE570",
+                                          "mtime":  "2026-11-22T04:52:22.5666481Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\3d\\b7505d188c19a80e9288efe6e29bda63f682ef",
+                                          "len":  593018,
+                                          "sha":  "A5AF749545D0347F",
+                                          "mtime":  "2026-11-22T04:52:22.4346468Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\40\\3c224d79e478e70410d5a15ecf6b46d08d7c3f",
+                                          "len":  54,
+                                          "sha":  "50193B86371C2DCD",
+                                          "mtime":  "2026-11-22T04:52:22.6486433Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\42\\1a830511bef3b2fa5287215b81f2e89e2be59d",
+                                          "len":  51,
+                                          "sha":  "846F020CFB3377AE",
+                                          "mtime":  "2026-11-22T04:52:22.6336843Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\44\\723f7d70efdd895bc67024b1d0aa99f1c26444",
+                                          "len":  1899,
+                                          "sha":  "BF44D1DD2A7B1C14",
+                                          "mtime":  "2026-11-22T04:52:22.5506420Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\49\\ac127286d1f8f5eefd44857ebacb508128493d",
+                                          "len":  1298,
+                                          "sha":  "11CAEBE5ACB5C567",
+                                          "mtime":  "2026-11-22T04:52:22.5196431Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\54\\eb287ba117bd59e1e53fbd222d55a09ca8a34b",
+                                          "len":  2115,
+                                          "sha":  "C2A9093232641131",
+                                          "mtime":  "2026-11-22T04:52:22.5616455Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\58\\8123321f023fa82f8f29ce340100619ad998c1",
+                                          "len":  475,
+                                          "sha":  "66F8A31CE2F5A00F",
+                                          "mtime":  "2026-11-22T04:52:22.4006452Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\60\\e7ad41edc2091ed34d14cb9808a94adff3feb3",
+                                          "len":  691986,
+                                          "sha":  "B9D10B3F7FE7BC77",
+                                          "mtime":  "2026-11-22T04:52:22.4546422Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\63\\4c999dd0d1533f416e0303c25375f246e909c0",
+                                          "len":  869,
+                                          "sha":  "0F13F703DB8AF136",
+                                          "mtime":  "2026-11-22T04:52:22.5726475Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\6a\\6d39dba04207c1e9be7f33d10bcb0c69d82778",
+                                          "len":  781,
+                                          "sha":  "F6DB5FC8B738A976",
+                                          "mtime":  "2026-11-22T04:52:22.5116428Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\6b\\59c7f63f675bc70b8de06aa58d0149586c0f34",
+                                          "len":  1880,
+                                          "sha":  "E00FF055D784553E",
+                                          "mtime":  "2026-11-22T04:52:22.5256429Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\6c\\0aab309604b3c9f54ed8df935746f446b5592b",
+                                          "len":  665,
+                                          "sha":  "164379F1769D9071",
+                                          "mtime":  "2026-11-22T04:52:22.4066482Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\6c\\6f43ffad8929b198f076d4b7aa3fd0b382a705",
+                                          "len":  1685,
+                                          "sha":  "5C68BFEE792518F8",
+                                          "mtime":  "2026-11-22T04:52:22.5456427Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\7d\\8b878dc44662c5278da3768434490f04f51db9",
+                                          "len":  203,
+                                          "sha":  "3FC3842F7E3A6CB4",
+                                          "mtime":  "2026-11-22T04:52:22.6456425Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\7f\\b2965ece35d948d56edbbc2ac6fb63f37e976e",
+                                          "len":  386,
+                                          "sha":  "C8D200C6F6E6CF61",
+                                          "mtime":  "2026-11-22T04:52:31.3507084Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\82\\8c3dc8e10b29f5ba7565ddba6f8df538eaf05f",
+                                          "len":  652,
+                                          "sha":  "D787FA96898191CB",
+                                          "mtime":  "2026-11-22T04:52:22.5476424Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\83\\a3c87ec83a52134dfeda91ac7dedc8e8c7599a",
+                                          "len":  1252,
+                                          "sha":  "D7BBAC3BDF29230A",
+                                          "mtime":  "2026-11-22T04:52:22.5216427Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\86\\a43f8333d7eea267ea970bb3a61ed4d75be53e",
+                                          "len":  228,
+                                          "sha":  "DA8FBFEBF396FB28",
+                                          "mtime":  "2026-11-22T04:52:22.6366882Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\89\\4b11d371ea47693694824d4e93f4bec062735a",
+                                          "len":  949,
+                                          "sha":  "0F2403F2D842B6B2",
+                                          "mtime":  "2026-11-22T04:52:22.5236425Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\90\\e912962a76d239bb6ba9e1aade4c72ffb80e61",
+                                          "len":  652779,
+                                          "sha":  "3BC74328E325486A",
+                                          "mtime":  "2026-11-22T04:52:22.5086422Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\95\\40a91f7ffad77cb1466c0a48856bba621bbe0d",
+                                          "len":  108,
+                                          "sha":  "3FB147CBE8934ED6",
+                                          "mtime":  "2026-11-22T04:52:22.5136430Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\9a\\49061dcfcc5472a7067cfbd2c6f05784917fd6",
+                                          "len":  876,
+                                          "sha":  "B0C65D7DE7B738DE",
+                                          "mtime":  "2026-11-22T04:52:22.5646473Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\a0\\08e2b8094ed06d61e71b93d5a0d573b6849ae8",
+                                          "len":  849,
+                                          "sha":  "EA084DDB4879BE8A",
+                                          "mtime":  "2026-11-22T04:52:22.5776463Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\a3\\a515f602eb141c25b0d7d753ca5201d65519a2",
+                                          "len":  964,
+                                          "sha":  "260FED255942B14B",
+                                          "mtime":  "2026-11-22T04:52:22.5326436Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\a5\\6955dff38abf16cfd13f13e2aa2d1765cd7d6e",
+                                          "len":  688,
+                                          "sha":  "9F8AF3199B2F01FE",
+                                          "mtime":  "2026-11-22T04:52:22.5366441Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\a6\\16e8489013493fd18d1fb9e4d73d393e652e09",
+                                          "len":  414,
+                                          "sha":  "D957CCEE0B8AE0F0",
+                                          "mtime":  "2026-11-22T04:52:22.6576426Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\ad\\6b8b0634e5689ad5ec53e9013ccb3d878c3375",
+                                          "len":  740,
+                                          "sha":  "ECE08BFE3C4BDEAF",
+                                          "mtime":  "2026-11-22T04:52:22.5306480Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\b0\\9b79385da9d145da8a8d2aa38737211a185012",
+                                          "len":  2985,
+                                          "sha":  "6C824C6207C13215",
+                                          "mtime":  "2026-11-22T04:52:22.5596440Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\b8\\5885133659b20db0fcba2ea32224aed161de33",
+                                          "len":  370,
+                                          "sha":  "29F5DFF49201197F",
+                                          "mtime":  "2026-11-22T04:52:22.6546421Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\c7\\c9d871066696c71d1f2e8c4857d71952d08dfa",
+                                          "len":  5743,
+                                          "sha":  "B8BF07FC208D604E",
+                                          "mtime":  "2026-11-22T04:52:22.5406436Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\c9\\87f6142c3514b5e39690185b48869132de593c",
+                                          "len":  158,
+                                          "sha":  "DAD745069C2C845D",
+                                          "mtime":  "2026-11-22T04:52:31.2967087Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\cd\\87c89a6a29e638737ae3852acacdbdad2d16b7",
+                                          "len":  5461,
+                                          "sha":  "3AD04B17CB8FACC6",
+                                          "mtime":  "2026-11-22T04:52:22.4146468Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\cf\\05c79b0d13714e1a13b33bec6a9598657acb9b",
+                                          "len":  233,
+                                          "sha":  "091F000995AD8C77",
+                                          "mtime":  "2026-11-22T04:52:31.3567093Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\d6\\1c3f85aa773d29db10212f30861804f0a7223c",
+                                          "len":  4320,
+                                          "sha":  "C7089E75879710C0",
+                                          "mtime":  "2026-11-22T04:52:22.4176447Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\d6\\361dc5a1298cc12b0fe00b310bfbf2e95443a3",
+                                          "len":  3356,
+                                          "sha":  "C1F6F363DEFBD156",
+                                          "mtime":  "2026-11-22T04:52:22.5446444Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\d9\\4476021ce6764ac481f505f49bac1dd8277125",
+                                          "len":  340,
+                                          "sha":  "F114AB82B8CF9ABD",
+                                          "mtime":  "2026-11-22T04:52:22.5696453Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\df\\414f24b0d991e391a1298e662cef8763ef4ebc",
+                                          "len":  655716,
+                                          "sha":  "F6602016A4A856C1",
+                                          "mtime":  "2026-11-22T04:52:22.4746422Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\e1\\89d4920f2f6b255ab29a0af48e3c2d11144922",
+                                          "len":  342,
+                                          "sha":  "F4537177021E770D",
+                                          "mtime":  "2026-11-22T04:52:22.4106450Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\e2\\fd8009255a82a4d71529fe0a98f25367377429",
+                                          "len":  4412,
+                                          "sha":  "2C19A9F7C55E42C4",
+                                          "mtime":  "2026-11-22T04:52:22.5276425Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\e7\\58374ec4580b13d78bd064519d2c3e76f7b704",
+                                          "len":  360,
+                                          "sha":  "90F6F380BDF9B71E",
+                                          "mtime":  "2026-11-22T04:52:22.5566450Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\e9\\31344e18327e1fc827e736a69bffc3631fe99c",
+                                          "len":  199,
+                                          "sha":  "EAE2E6DF9DF4A1C2",
+                                          "mtime":  "2026-11-22T04:52:22.6626423Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\f2\\c533cd160984e6a3c55e9204959445800c7b2b",
+                                          "len":  481,
+                                          "sha":  "C50A38F59447711C",
+                                          "mtime":  "2026-11-22T04:52:22.5526427Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\f4\\6653fa39337f0f89cebfb8023746d16b0302fb",
+                                          "len":  546575,
+                                          "sha":  "0B2C601EA25EAAF0",
+                                          "mtime":  "2026-11-22T04:52:22.4916421Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\fc\\57d11e7083f240620ea34f55e8c1f563fb86da",
+                                          "len":  152,
+                                          "sha":  "6479A44C5650F324",
+                                          "mtime":  "2026-11-22T04:52:22.4036455Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\refs\\heads\\main",
+                                          "len":  41,
+                                          "sha":  "628E838E94B46CA2",
+                                          "mtime":  "2026-11-22T04:52:31.3607111Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\refs\\tags\\v0.1.0",
+                                          "len":  41,
+                                          "sha":  "178B8FE40CABEC3F",
+                                          "mtime":  "2026-11-22T04:52:48.1039650Z"
+                                      },
+                                      {
+                                          "rel":  ".github\\workflows\\ci.yml",
+                                          "len":  942,
+                                          "sha":  "0B622D5C06894F09",
+                                          "mtime":  "2026-11-22T03:01:30.1027972Z"
+                                      },
+                                      {
+                                          "rel":  "assets\\screenshots\\01-hybrid-overview.png",
+                                          "len":  593116,
+                                          "sha":  "4CA955D36C3DC1E9",
+                                          "mtime":  "2026-11-22T02:23:36.6636028Z"
+                                      },
+                                      {
+                                          "rel":  "assets\\screenshots\\02-console-menu.png",
+                                          "len":  692096,
+                                          "sha":  "D7C55E3C458A859A",
+                                          "mtime":  "2026-11-22T02:08:07.9963260Z"
+                                      },
+                                      {
+                                          "rel":  "assets\\screenshots\\03-dashboard-report.png",
+                                          "len":  656131,
+                                          "sha":  "39DF5BA6BDC1AFF7",
+                                          "mtime":  "2026-11-22T02:09:54.6640181Z"
+                                      },
+                                      {
+                                          "rel":  "assets\\screenshots\\04-palette-board.png",
+                                          "len":  546626,
+                                          "sha":  "82D866C113AB274A",
+                                          "mtime":  "2026-11-22T02:24:53.9566016Z"
+                                      },
+                                      {
+                                          "rel":  "assets\\screenshots\\05-art-direction.png",
+                                          "len":  652742,
+                                          "sha":  "97F0A383081FCDEF",
+                                          "mtime":  "2026-11-22T02:11:00.8073470Z"
+                                      },
+                                      {
+                                          "rel":  "backups\\20261122-123723.json",
+                                          "len":  2820,
+                                          "sha":  "C952275308892A1B",
+                                          "mtime":  "2026-11-22T04:37:26.2939270Z"
+                                      },
+                                      {
+                                          "rel":  "backups\\20261122-123803.json",
+                                          "len":  759,
+                                          "sha":  "041FDD5B2E4F2560",
+                                          "mtime":  "2026-11-22T04:38:04.7215689Z"
+                                      },
+                                      {
+                                          "rel":  "backups\\20261122-123822.json",
+                                          "len":  2820,
+                                          "sha":  "3D48B91339C22EBF",
+                                          "mtime":  "2026-11-22T04:38:23.6534091Z"
+                                      },
+                                      {
+                                          "rel":  "backups\\20261122-124142.json",
+                                          "len":  759,
+                                          "sha":  "C231E868F78624EE",
+                                          "mtime":  "2026-11-22T04:41:43.6765988Z"
+                                      },
+                                      {
+                                          "rel":  "backups\\20261122-124559.json",
+                                          "len":  2820,
+                                          "sha":  "C54D16581E9FD6C7",
+                                          "mtime":  "2026-11-22T04:46:01.5517228Z"
+                                      },
+                                      {
+                                          "rel":  "backups\\20261122-124610.json",
+                                          "len":  759,
+                                          "sha":  "F2CB9BAD9C8DB214",
+                                          "mtime":  "2026-11-22T04:46:11.1822405Z"
+                                      },
+                                      {
+                                          "rel":  "config\\optimize-items.json",
+                                          "len":  1850,
+                                          "sha":  "8F32809144E71718",
+                                          "mtime":  "2026-11-22T03:18:22.3073101Z"
+                                      },
+                                      {
+                                          "rel":  "config\\settings.json",
+                                          "len":  117,
+                                          "sha":  "AF79988214A3FED4",
+                                          "mtime":  "2026-11-22T02:31:49.9660242Z"
+                                      },
+                                      {
+                                          "rel":  "config\\software-list.json",
+                                          "len":  610,
+                                          "sha":  "C1F9DAEBFCDF6C86",
+                                          "mtime":  "2026-11-22T02:31:49.9640248Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\DESIGN.md",
+                                          "len":  1939,
+                                          "sha":  "F528A185F371C38D",
+                                          "mtime":  "2026-11-22T03:32:35.1892124Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\POST-RELEASE-OPS.md",
+                                          "len":  1875,
+                                          "sha":  "3F828F461AB0684A",
+                                          "mtime":  "2026-11-22T04:48:36.2734970Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\RELEASE-CHECKLIST.md",
+                                          "len":  1317,
+                                          "sha":  "F73B4C027B6DF439",
+                                          "mtime":  "2026-11-22T04:48:42.4804057Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\RESEARCH.md",
+                                          "len":  2715,
+                                          "sha":  "98F66E7233714A86",
+                                          "mtime":  "2026-11-22T02:37:27.5978771Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\TROUBLESHOOTING.md",
+                                          "len":  7859,
+                                          "sha":  "1A4D6973BC885E0D",
+                                          "mtime":  "2026-11-22T04:48:36.2734970Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\e2e.log",
+                                          "len":  267,
+                                          "sha":  "5F61EF535596802B",
+                                          "mtime":  "2026-11-22T03:52:06.4658393Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\e2e2.log",
+                                          "len":  214,
+                                          "sha":  "9FB60436B0284A3E",
+                                          "mtime":  "2026-11-22T03:52:29.5091220Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\repro.log",
+                                          "len":  411,
+                                          "sha":  "21EBC4BBE28DB318",
+                                          "mtime":  "2026-11-22T03:42:36.2317441Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\verifyfix.log",
+                                          "len":  137,
+                                          "sha":  "8287A5057E631A6B",
+                                          "mtime":  "2026-11-22T03:44:30.6490052Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-103700.log",
+                                          "len":  152,
+                                          "sha":  "C53F117035152B60",
+                                          "mtime":  "2026-11-22T02:37:00.8790948Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-103706.log",
+                                          "len":  152,
+                                          "sha":  "F1693895125118F9",
+                                          "mtime":  "2026-11-22T02:37:06.6544215Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-104244.log",
+                                          "len":  385,
+                                          "sha":  "AD7D81DF34AA56D5",
+                                          "mtime":  "2026-11-22T02:44:34.5714788Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-104252.log",
+                                          "len":  79,
+                                          "sha":  "91400B85B2591A57",
+                                          "mtime":  "2026-11-22T02:42:52.3772163Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-104814.log",
+                                          "len":  79,
+                                          "sha":  "D62C97AB5F5CA8D8",
+                                          "mtime":  "2026-11-22T02:48:14.3147509Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-104821.log",
+                                          "len":  422,
+                                          "sha":  "E8B787025EFD675C",
+                                          "mtime":  "2026-11-22T02:48:30.0111065Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-105525.log",
+                                          "len":  152,
+                                          "sha":  "BB4181448874646F",
+                                          "mtime":  "2026-11-22T02:55:25.5142275Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-105526.log",
+                                          "len":  629,
+                                          "sha":  "CC23078C39967417",
+                                          "mtime":  "2026-11-22T02:56:00.3568911Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-110235.log",
+                                          "len":  152,
+                                          "sha":  "108C611F7F5774AF",
+                                          "mtime":  "2026-11-22T03:02:35.2736084Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-110236.log",
+                                          "len":  130,
+                                          "sha":  "D639443523AEA7FD",
+                                          "mtime":  "2026-11-22T03:02:39.3198121Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-110924.log",
+                                          "len":  152,
+                                          "sha":  "677423BCCF8CB7BF",
+                                          "mtime":  "2026-11-22T03:09:24.0840600Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-110925.log",
+                                          "len":  1103,
+                                          "sha":  "AA594363A6B361E8",
+                                          "mtime":  "2026-11-22T03:09:27.2971061Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-111127.log",
+                                          "len":  152,
+                                          "sha":  "80458ED010442037",
+                                          "mtime":  "2026-11-22T03:11:27.2187456Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-111128.log",
+                                          "len":  374,
+                                          "sha":  "1D6D13FF08FFD2A4",
+                                          "mtime":  "2026-11-22T03:11:30.4582921Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-112058.log",
+                                          "len":  152,
+                                          "sha":  "59BCE43E627E9D5D",
+                                          "mtime":  "2026-11-22T03:20:58.4996878Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-112059.log",
+                                          "len":  485,
+                                          "sha":  "597B3FCBA45FCDC6",
+                                          "mtime":  "2026-11-22T03:21:38.7208888Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-113535.log",
+                                          "len":  208,
+                                          "sha":  "BAA6C374E34F0BA5",
+                                          "mtime":  "2026-11-22T03:35:35.9494920Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-113648.log",
+                                          "len":  208,
+                                          "sha":  "6FDB1C7223C02202",
+                                          "mtime":  "2026-11-22T03:36:48.6402107Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-113815.log",
+                                          "len":  152,
+                                          "sha":  "A5E4E8030422FEE1",
+                                          "mtime":  "2026-11-22T03:38:15.4160617Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-113816.log",
+                                          "len":  136,
+                                          "sha":  "EC2738C1A77F4B76",
+                                          "mtime":  "2026-11-22T03:38:20.0588094Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-113927.log",
+                                          "len":  152,
+                                          "sha":  "1C4807C5A21D25D2",
+                                          "mtime":  "2026-11-22T03:39:27.0807239Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-113928.log",
+                                          "len":  281,
+                                          "sha":  "08EECB4791F1C3C8",
+                                          "mtime":  "2026-11-22T03:40:14.4149300Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-115331.log",
+                                          "len":  152,
+                                          "sha":  "83883EE52A93901B",
+                                          "mtime":  "2026-11-22T03:53:31.2990356Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-115332.log",
+                                          "len":  478,
+                                          "sha":  "5218A66678967CFA",
+                                          "mtime":  "2026-11-22T03:54:06.8716608Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-120149.log",
+                                          "len":  152,
+                                          "sha":  "1055F40748EE9CB0",
+                                          "mtime":  "2026-11-22T04:01:49.5452414Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-120150.log",
+                                          "len":  597,
+                                          "sha":  "91C694F6E06B6EE4",
+                                          "mtime":  "2026-11-22T04:02:05.4069370Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-123710.log",
+                                          "len":  152,
+                                          "sha":  "CF73AAC6A44A8968",
+                                          "mtime":  "2026-11-22T04:37:10.8673946Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-123712.log",
+                                          "len":  1976,
+                                          "sha":  "E1FB6EDCC5ABCB23",
+                                          "mtime":  "2026-11-22T04:40:06.4962256Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-124131.log",
+                                          "len":  152,
+                                          "sha":  "6D6CC511D29DCA40",
+                                          "mtime":  "2026-11-22T04:41:31.4390876Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-124132.log",
+                                          "len":  321,
+                                          "sha":  "1AD6A0C7874F9C63",
+                                          "mtime":  "2026-11-22T04:41:43.6826844Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-124554.log",
+                                          "len":  152,
+                                          "sha":  "A6A3A2642386A246",
+                                          "mtime":  "2026-11-22T04:45:54.3565838Z"
+                                      },
+                                      {
+                                          "rel":  "logs\\windeploy-20261122-124555.log",
+                                          "len":  1130,
+                                          "sha":  "85E09E242F8BE40E",
+                                          "mtime":  "2026-11-22T04:46:11.1852367Z"
+                                      },
+                                      {
+                                          "rel":  "modules\\Backup.psm1",
+                                          "len":  2120,
+                                          "sha":  "6DB54DD97D40CF9B",
+                                          "mtime":  "2026-11-22T03:13:34.6933191Z"
+                                      },
+                                      {
+                                          "rel":  "modules\\Install-Software.ps1",
+                                          "len":  17056,
+                                          "sha":  "EF20F385D03D8D01",
+                                          "mtime":  "2026-11-22T03:56:48.3132853Z"
+                                      },
+                                      {
+                                          "rel":  "modules\\Invoke-DriverCheck.ps1",
+                                          "len":  1097,
+                                          "sha":  "ECB9A6C34BEC2B97",
+                                          "mtime":  "2026-11-22T02:53:49.0005116Z"
+                                      },
+                                      {
+                                          "rel":  "modules\\Invoke-FolderShare.ps1",
+                                          "len":  17508,
+                                          "sha":  "A2B4464EB360B4F3",
+                                          "mtime":  "2026-11-22T04:47:54.5003054Z"
+                                      },
+                                      {
+                                          "rel":  "modules\\Invoke-NetworkCheck.ps1",
+                                          "len":  2675,
+                                          "sha":  "1624DBC12CDEBAB4",
+                                          "mtime":  "2026-11-22T02:29:27.8331596Z"
+                                      },
+                                      {
+                                          "rel":  "modules\\Invoke-SelfTest.ps1",
+                                          "len":  8691,
+                                          "sha":  "AB95B31A6A986D01",
+                                          "mtime":  "2026-11-22T03:51:29.8699200Z"
+                                      },
+                                      {
+                                          "rel":  "modules\\logger.psm1",
+                                          "len":  4006,
+                                          "sha":  "6D3DE62E260210B0",
+                                          "mtime":  "2026-11-22T03:44:10.5121385Z"
+                                      },
+                                      {
+                                          "rel":  "modules\\Optimize-System.ps1",
+                                          "len":  3819,
+                                          "sha":  "026EEE26CD888C51",
+                                          "mtime":  "2026-11-22T03:18:28.0179939Z"
+                                      },
+                                      {
+                                          "rel":  "modules\\Restore-Optimization.ps1",
+                                          "len":  961,
+                                          "sha":  "7AB81CB494430ABF",
+                                          "mtime":  "2026-11-22T02:31:49.9660242Z"
+                                      },
+                                      {
+                                          "rel":  "reports\\selftest-20261122-112137.html",
+                                          "len":  3069,
+                                          "sha":  "8EFA9B9D8A34F1B1",
+                                          "mtime":  "2026-11-22T03:21:38.7178860Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\config.Tests.ps1",
+                                          "len":  950,
+                                          "sha":  "F4C68A42FFE821E3",
+                                          "mtime":  "2026-11-22T02:29:05.9066435Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\driver-check.Tests.ps1",
+                                          "len":  768,
+                                          "sha":  "865791708506A996",
+                                          "mtime":  "2026-11-22T02:53:40.1811162Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\folder-share.Tests.ps1",
+                                          "len":  11669,
+                                          "sha":  "9FE5C4371673AF84",
+                                          "mtime":  "2026-11-22T04:47:34.1062775Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\local-install.Tests.ps1",
+                                          "len":  8107,
+                                          "sha":  "C4E92E7C34DDAFEF",
+                                          "mtime":  "2026-11-22T03:56:35.7661054Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\logger.Tests.ps1",
+                                          "len":  2039,
+                                          "sha":  "4238180BFE3DC62C",
+                                          "mtime":  "2026-11-22T03:43:30.6705120Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\network-check.Tests.ps1",
+                                          "len":  761,
+                                          "sha":  "7A8C7A555B243148",
+                                          "mtime":  "2026-11-22T02:29:05.9096436Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\optimize-backup.Tests.ps1",
+                                          "len":  643,
+                                          "sha":  "D09490DF0F950788",
+                                          "mtime":  "2026-11-22T02:29:36.2886743Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\optimize-items.Tests.ps1",
+                                          "len":  2094,
+                                          "sha":  "FDC078C4F8B74641",
+                                          "mtime":  "2026-11-22T03:17:59.4039509Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\report.Tests.ps1",
+                                          "len":  6086,
+                                          "sha":  "8D74D52B6A9E935F",
+                                          "mtime":  "2026-11-22T03:51:23.0821896Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\software-install.Tests.ps1",
+                                          "len":  1870,
+                                          "sha":  "1A6BA88F33BF2A80",
+                                          "mtime":  "2026-11-22T03:00:02.0659864Z"
+                                      }
+                                  ],
+                        "count":  159,
+                        "exists":  true
+                    },
+                    {
+                        "path":  "E:\\文档\\deepseek-harness\\default-workspace\\lan-ops-scan",
+                        "files":  [
+                                      {
+                                          "rel":  ".gitignore",
+                                          "len":  157,
+                                          "sha":  "3C13990FD94B7279",
+                                          "mtime":  "2026-11-22T03:47:48.8659642Z"
+                                      },
+                                      {
+                                          "rel":  "benchmark.py",
+                                          "len":  1461,
+                                          "sha":  "697441AD067063D8",
+                                          "mtime":  "2026-11-22T02:29:16.4254005Z"
+                                      },
+                                      {
+                                          "rel":  "build_exe.bat",
+                                          "len":  1270,
+                                          "sha":  "9ED56127BD5008C0",
+                                          "mtime":  "2026-11-22T03:34:04.9547608Z"
+                                      },
+                                      {
+                                          "rel":  "detect.py",
+                                          "len":  8248,
+                                          "sha":  "E57F87C1701FDC93",
+                                          "mtime":  "2026-11-22T03:05:32.1282811Z"
+                                      },
+                                      {
+                                          "rel":  "e2e_demo.py",
+                                          "len":  1382,
+                                          "sha":  "7642090325CBE2F5",
+                                          "mtime":  "2026-11-22T02:30:11.3380680Z"
+                                      },
+                                      {
+                                          "rel":  "gui.py",
+                                          "len":  25690,
+                                          "sha":  "3B2068445818B723",
+                                          "mtime":  "2026-11-22T03:40:47.5725076Z"
+                                      },
+                                      {
+                                          "rel":  "LAN-Ops-Scan.spec",
+                                          "len":  726,
+                                          "sha":  "0D3409711888D1E8",
+                                          "mtime":  "2026-11-22T03:41:24.7630965Z"
+                                      },
+                                      {
+                                          "rel":  "lanops.py",
+                                          "len":  10405,
+                                          "sha":  "E139702D40FE85A8",
+                                          "mtime":  "2026-11-22T03:40:47.5735086Z"
+                                      },
+                                      {
+                                          "rel":  "LICENSE",
+                                          "len":  251,
+                                          "sha":  "D05AEA5AB32E9DDC",
+                                          "mtime":  "2026-11-22T02:29:44.8684751Z"
+                                      },
+                                      {
+                                          "rel":  "ouidb.py",
+                                          "len":  5388,
+                                          "sha":  "D6B839C866D19A19",
+                                          "mtime":  "2026-11-22T02:27:22.8622541Z"
+                                      },
+                                      {
+                                          "rel":  "oui_top3000.txt",
+                                          "len":  2271,
+                                          "sha":  "6EE43204FD22985C",
+                                          "mtime":  "2026-11-22T02:27:22.8622541Z"
+                                      },
+                                      {
+                                          "rel":  "portscan.py",
+                                          "len":  2492,
+                                          "sha":  "B1B4BD016E0486CF",
+                                          "mtime":  "2026-11-22T02:27:38.8095782Z"
+                                      },
+                                      {
+                                          "rel":  "README.md",
+                                          "len":  10495,
+                                          "sha":  "45397DBEDD721C0A",
+                                          "mtime":  "2026-11-22T03:41:24.4031356Z"
+                                      },
+                                      {
+                                          "rel":  "report.py",
+                                          "len":  10111,
+                                          "sha":  "F1BB18C3D0FACB73",
+                                          "mtime":  "2026-11-22T02:28:14.3834885Z"
+                                      },
+                                      {
+                                          "rel":  "scanner.py",
+                                          "len":  11462,
+                                          "sha":  "75A4C8DCD4922B3C",
+                                          "mtime":  "2026-11-22T02:36:49.6140689Z"
+                                      },
+                                      {
+                                          "rel":  "scheduler.py",
+                                          "len":  2021,
+                                          "sha":  "DB2C29DED87B1876",
+                                          "mtime":  "2026-11-22T02:28:25.1253585Z"
+                                      },
+                                      {
+                                          "rel":  "upstream.py",
+                                          "len":  13076,
+                                          "sha":  "28AE15844560729D",
+                                          "mtime":  "2026-11-22T03:40:37.7715689Z"
+                                      },
+                                      {
+                                          "rel":  "启动.bat",
+                                          "len":  742,
+                                          "sha":  "0DC9675FC18D212A",
+                                          "mtime":  "2026-11-22T03:34:04.9527641Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\COMMIT_EDITMSG",
+                                          "len":  78,
+                                          "sha":  "FCECC983EAFB0C7A",
+                                          "mtime":  "2026-11-22T03:47:49.3976372Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\config",
+                                          "len":  438,
+                                          "sha":  "DE3424A68B1DE17F",
+                                          "mtime":  "2026-11-22T03:49:23.9529484Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\description",
+                                          "len":  73,
+                                          "sha":  "85AB6C163D43A17E",
+                                          "mtime":  "2026-11-22T03:47:48.9399647Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\HEAD",
+                                          "len":  21,
+                                          "sha":  "28D25BF82AF4C0E2",
+                                          "mtime":  "2026-11-22T03:47:48.9679653Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\index",
+                                          "len":  2377,
+                                          "sha":  "53AAE927F648196C",
+                                          "mtime":  "2026-11-22T03:47:49.3956345Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\applypatch-msg.sample",
+                                          "len":  478,
+                                          "sha":  "0223497A0B8B033A",
+                                          "mtime":  "2026-11-22T03:47:48.9419642Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\commit-msg.sample",
+                                          "len":  1972,
+                                          "sha":  "EFC1401B0E99D1FF",
+                                          "mtime":  "2026-11-22T03:47:48.9429648Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\fsmonitor-watchman.sample",
+                                          "len":  4611,
+                                          "sha":  "9159720099AD5595",
+                                          "mtime":  "2026-11-22T03:47:48.9439656Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\post-update.sample",
+                                          "len":  189,
+                                          "sha":  "81765AF2DAEF3230",
+                                          "mtime":  "2026-11-22T03:47:48.9449641Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-applypatch.sample",
+                                          "len":  424,
+                                          "sha":  "E15C5B469EA3E0A6",
+                                          "mtime":  "2026-11-22T03:47:48.9459645Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-commit.sample",
+                                          "len":  1649,
+                                          "sha":  "57185B7B9F05239D",
+                                          "mtime":  "2026-11-22T03:47:48.9469640Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-merge-commit.sample",
+                                          "len":  416,
+                                          "sha":  "D3825A70337940EB",
+                                          "mtime":  "2026-11-22T03:47:48.9469640Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-push.sample",
+                                          "len":  1374,
+                                          "sha":  "ECCE9C7E04D3F5DD",
+                                          "mtime":  "2026-11-22T03:47:48.9479648Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-rebase.sample",
+                                          "len":  4898,
+                                          "sha":  "4FEBCE8677900523",
+                                          "mtime":  "2026-11-22T03:47:48.9489650Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\pre-receive.sample",
+                                          "len":  544,
+                                          "sha":  "A4C3D2B9C7BB3FD8",
+                                          "mtime":  "2026-11-22T03:47:48.9499804Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\prepare-commit-msg.sample",
+                                          "len":  1492,
+                                          "sha":  "E9DDCAA4189FDDD2",
+                                          "mtime":  "2026-11-22T03:47:48.9519653Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\push-to-checkout.sample",
+                                          "len":  2783,
+                                          "sha":  "A53D0741798B287C",
+                                          "mtime":  "2026-11-22T03:47:48.9529668Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\sendemail-validate.sample",
+                                          "len":  2308,
+                                          "sha":  "44EBFC923DC5466B",
+                                          "mtime":  "2026-11-22T03:47:48.9539639Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\hooks\\update.sample",
+                                          "len":  3650,
+                                          "sha":  "8D5F2FA83E103CF0",
+                                          "mtime":  "2026-11-22T03:47:48.9549675Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\info\\exclude",
+                                          "len":  240,
+                                          "sha":  "6671FE83B7A07C89",
+                                          "mtime":  "2026-11-22T03:47:48.9559649Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\logs\\HEAD",
+                                          "len":  229,
+                                          "sha":  "EB4643CD157CDEB8",
+                                          "mtime":  "2026-11-22T03:47:49.4036351Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\logs\\refs\\heads\\main",
+                                          "len":  229,
+                                          "sha":  "EB4643CD157CDEB8",
+                                          "mtime":  "2026-11-22T03:47:49.4046341Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\06\\edfde57281108002c509444ade21c4404198c6",
+                                          "len":  166,
+                                          "sha":  "14DCF2D527CCE49E",
+                                          "mtime":  "2026-11-22T03:47:49.1706746Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\0b\\77dbbbb779a46bcfa1d29ad2ab321230a69f1e",
+                                          "len":  4218,
+                                          "sha":  "074804E5ED7D0786",
+                                          "mtime":  "2026-11-22T03:47:49.2286356Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\13\\c06af771ba4a6b161fb904230a9d2c753d7bd9",
+                                          "len":  234,
+                                          "sha":  "597ADC942E67AA53",
+                                          "mtime":  "2026-11-22T03:47:49.3866354Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\15\\862568c1c448c23f8fb0ce5cd5bb78cf3a6863",
+                                          "len":  1792,
+                                          "sha":  "DA3C9A2A7DECEB31",
+                                          "mtime":  "2026-11-22T03:47:49.1876344Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\15\\c0ff682983ddeabb47cd8b2306e24e0e7f150b",
+                                          "len":  891,
+                                          "sha":  "7E2C7CDFAE11C611",
+                                          "mtime":  "2026-11-22T03:47:49.1796354Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\1c\\1c923f4eeebdae88720da9ecbfb12de1fa41ee",
+                                          "len":  380,
+                                          "sha":  "68BF789339998B53",
+                                          "mtime":  "2026-11-22T03:47:49.2496359Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\25\\08476d672f32c502ffd1069373840d65baf2d3",
+                                          "len":  725,
+                                          "sha":  "418D0DD1B3A02B17",
+                                          "mtime":  "2026-11-22T03:47:49.1816347Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\2e\\5964b23447fa125f0e71282473b96da3e95770",
+                                          "len":  519,
+                                          "sha":  "47055F54ED386719",
+                                          "mtime":  "2026-11-22T03:47:49.1896330Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\32\\6a6aa0ae3b9840f5b4ab13e501a039898173de",
+                                          "len":  43817,
+                                          "sha":  "3BE496DC8693DA28",
+                                          "mtime":  "2026-11-22T03:47:49.2126346Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\40\\49002ec89a0f89491d7ced897d0ab1996c719d",
+                                          "len":  57,
+                                          "sha":  "B732DA1CED1F1A1F",
+                                          "mtime":  "2026-11-22T03:47:49.3896354Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\48\\99c9f7fe8e0eb3362098ff1820400774ec2faa",
+                                          "len":  5208,
+                                          "sha":  "05F962430EE0C2CB",
+                                          "mtime":  "2026-11-22T03:47:49.2476348Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\5f\\b7b8a06b6e81b9a9c6d2ece0d68dd1a2f84cc1",
+                                          "len":  545851,
+                                          "sha":  "C510C576A9126A6F",
+                                          "mtime":  "2026-11-22T03:47:49.2076336Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\7b\\7c39a521e3f21004a5e0cdb4b417aeef9769f3",
+                                          "len":  80979,
+                                          "sha":  "80C3B7070EC24067",
+                                          "mtime":  "2026-11-22T03:47:49.2166359Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\82\\4c80f52f14cdeea01f0ae57675fdaa5e290ae1",
+                                          "len":  4326,
+                                          "sha":  "D6199DAC9D58C5DF",
+                                          "mtime":  "2026-11-22T03:47:49.2366351Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\85\\47565f8edfda9fd99d26afe4294e5874114ccd",
+                                          "len":  2115,
+                                          "sha":  "46F0E68F0F8F0F04",
+                                          "mtime":  "2026-11-22T03:47:49.2326365Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\86\\f05ac13f239ec2bc671ec89c4317ff0a6ededf",
+                                          "len":  3462,
+                                          "sha":  "25ABEB2BC64CE0CD",
+                                          "mtime":  "2026-11-22T03:47:49.1836350Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\8f\\6677a54c448dccccad068cfb7c01d53eba1c31",
+                                          "len":  188,
+                                          "sha":  "3F48846944A0E568",
+                                          "mtime":  "2026-11-22T03:47:49.3986353Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\90\\48ee1a6bfb29f363bc370fa35d25ba2a54ac0b",
+                                          "len":  628,
+                                          "sha":  "F0D3BD8D7A1184ED",
+                                          "mtime":  "2026-11-22T03:47:49.3936355Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\9c\\544e32a8548d33659c426a820a8f5a12f381ad",
+                                          "len":  987,
+                                          "sha":  "AA3CB7FF5357DB04",
+                                          "mtime":  "2026-11-22T03:47:49.2426345Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\9e\\900fc1d263c44b98d1b0f2e0e4df454f8036a8",
+                                          "len":  1319,
+                                          "sha":  "A924784583592882",
+                                          "mtime":  "2026-11-22T03:47:49.1856329Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\a9\\b3357f5a958c5478da2728724db77f4ed3bfb8",
+                                          "len":  4888,
+                                          "sha":  "B7C8083A7B59C507",
+                                          "mtime":  "2026-11-22T03:47:49.2456348Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\b0\\57d47a6c174ae64a9a72082c3c8d89154410b2",
+                                          "len":  81269,
+                                          "sha":  "DC6F9B93B3C7522A",
+                                          "mtime":  "2026-11-22T03:47:49.2216354Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\c0\\20e86d221605fab21a23618232c564fa33622a",
+                                          "len":  8679,
+                                          "sha":  "320CD2BBA6A224BA",
+                                          "mtime":  "2026-11-22T03:47:49.2256361Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\c3\\716c13a82d444448e94c30bfb6b11c1f8e3dec",
+                                          "len":  4473,
+                                          "sha":  "2928E7C48E80B7EB",
+                                          "mtime":  "2026-11-22T03:47:49.2396359Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\c7\\484e873dd225f545816009a6dc5d4a74c2f216",
+                                          "len":  1115,
+                                          "sha":  "6E87B637585ECC01",
+                                          "mtime":  "2026-11-22T03:47:49.2346351Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\e2\\cefbde98efa664f2288da4c7e98f0024837170",
+                                          "len":  199,
+                                          "sha":  "463C31CC31C10687",
+                                          "mtime":  "2026-11-22T03:47:49.1736785Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\ec\\397ae48ab68be43f78d82cdebb0de0049a157b",
+                                          "len":  973,
+                                          "sha":  "036C7EE6F1549BCC",
+                                          "mtime":  "2026-11-22T03:47:49.2306357Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\f4\\b5e45d6084470288f34a506cc6fa8b929a15f3",
+                                          "len":  164,
+                                          "sha":  "055D690C1DFCA10D",
+                                          "mtime":  "2026-11-22T03:47:49.3836353Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\f9\\593a113f7b6958d9bf29af824ee4215087d0f2",
+                                          "len":  5440,
+                                          "sha":  "360726B4383654F6",
+                                          "mtime":  "2026-11-22T03:47:49.1866331Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\fb\\787e73c7fc1f68f255b4a05625fa867bbec13e",
+                                          "len":  2601,
+                                          "sha":  "E2F752F15AAD9ADE",
+                                          "mtime":  "2026-11-22T03:47:49.1926361Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\objects\\ff\\dea4301042d6c3d05fb913c81407fbe6085b24",
+                                          "len":  853,
+                                          "sha":  "C8A6BF7C80D4B9D1",
+                                          "mtime":  "2026-11-22T03:47:49.2236373Z"
+                                      },
+                                      {
+                                          "rel":  ".git\\refs\\heads\\main",
+                                          "len":  41,
+                                          "sha":  "FB4CF42F0CE69B79",
+                                          "mtime":  "2026-11-22T03:47:49.4026363Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\Analysis-00.toc",
+                                          "len":  211831,
+                                          "sha":  "A5CABC912206D639",
+                                          "mtime":  "2026-11-22T03:41:29.3666743Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\base_library.zip",
+                                          "len":  1333717,
+                                          "sha":  "FE83B29C169DA079",
+                                          "mtime":  "2026-11-22T03:41:28.9256745Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\EXE-00.toc",
+                                          "len":  166626,
+                                          "sha":  "5828A1ADBA91E561",
+                                          "mtime":  "2026-11-22T03:41:32.6892914Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\LAN-Ops-Scan.pkg",
+                                          "len":  12071102,
+                                          "sha":  "31ED13D0C3C1F330",
+                                          "mtime":  "2026-11-22T03:41:32.5512926Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\PKG-00.toc",
+                                          "len":  164804,
+                                          "sha":  "A9C7F52AFA9FBDB5",
+                                          "mtime":  "2026-11-22T03:41:32.5723324Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\PYZ-00.pyz",
+                                          "len":  1988885,
+                                          "sha":  "5D953EEAA043E4AC",
+                                          "mtime":  "2026-11-22T03:41:29.5526714Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\PYZ-00.toc",
+                                          "len":  25489,
+                                          "sha":  "A2D5F9F12DCA3114",
+                                          "mtime":  "2026-11-22T03:41:29.5556757Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\warn-LAN-Ops-Scan.txt",
+                                          "len":  3120,
+                                          "sha":  "60420A79F25D5047",
+                                          "mtime":  "2026-11-22T03:41:29.3336714Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\xref-LAN-Ops-Scan.html",
+                                          "len":  353713,
+                                          "sha":  "8B49B1FA779B2B35",
+                                          "mtime":  "2026-11-22T03:41:29.3487192Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\localpycs\\pyimod01_archive.pyc",
+                                          "len":  4842,
+                                          "sha":  "475BC1508C68FD99",
+                                          "mtime":  "2026-11-22T03:41:29.3696742Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\localpycs\\pyimod02_importers.pyc",
+                                          "len":  32130,
+                                          "sha":  "A330656688EB6F2C",
+                                          "mtime":  "2026-11-22T03:41:29.3736739Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\localpycs\\pyimod03_ctypes.pyc",
+                                          "len":  6146,
+                                          "sha":  "878041D96AB96BE3",
+                                          "mtime":  "2026-11-22T03:41:29.3746746Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\localpycs\\pyimod04_pywin32.pyc",
+                                          "len":  1630,
+                                          "sha":  "A9181526BCD0FE65",
+                                          "mtime":  "2026-11-22T03:41:29.3756747Z"
+                                      },
+                                      {
+                                          "rel":  "build\\LAN-Ops-Scan\\localpycs\\struct.pyc",
+                                          "len":  305,
+                                          "sha":  "CA4E611E0BB2404D",
+                                          "mtime":  "2026-11-22T03:41:29.3676784Z"
+                                      },
+                                      {
+                                          "rel":  "dist\\LAN-Ops-Scan-v1.0.0-portable-win-x64.zip",
+                                          "len":  12166141,
+                                          "sha":  "F65059672F2720C7",
+                                          "mtime":  "2026-11-22T03:47:22.2496767Z"
+                                      },
+                                      {
+                                          "rel":  "dist\\lan-ops-scan-v1.0.0-source.zip",
+                                          "len":  822743,
+                                          "sha":  "744BD9EA8C1A880D",
+                                          "mtime":  "2026-11-22T03:47:22.3586756Z"
+                                      },
+                                      {
+                                          "rel":  "dist\\LAN-Ops-Scan.exe",
+                                          "len":  12440766,
+                                          "sha":  "B7860423B2474BF3",
+                                          "mtime":  "2026-11-22T03:41:32.6722931Z"
+                                      },
+                                      {
+                                          "rel":  "dist\\RELEASE_NOTES.md",
+                                          "len":  1802,
+                                          "sha":  "710F1BEF972FD25C",
+                                          "mtime":  "2026-11-22T03:47:31.4260108Z"
+                                      },
+                                      {
+                                          "rel":  "dist\\SHA256SUMS.txt",
+                                          "len":  398,
+                                          "sha":  "EDCF56318813A2C6",
+                                          "mtime":  "2026-11-22T03:47:22.3866755Z"
+                                      },
+                                      {
+                                          "rel":  "dist\\LAN-Ops-Scan-portable\\LAN-Ops-Scan.exe",
+                                          "len":  12440766,
+                                          "sha":  "B7860423B2474BF3",
+                                          "mtime":  "2026-11-22T03:41:32.6722931Z"
+                                      },
+                                      {
+                                          "rel":  "dist\\LAN-Ops-Scan-portable\\使用说明.txt",
+                                          "len":  1876,
+                                          "sha":  "1FAD24EFA7237157",
+                                          "mtime":  "2026-11-22T03:47:21.8046758Z"
+                                      },
+                                      {
+                                          "rel":  "dist\\LAN-Ops-Scan-portable\\示例巡检报告.html",
+                                          "len":  6207,
+                                          "sha":  "41DC37C99FCB7146",
+                                          "mtime":  "2026-11-22T02:29:16.4183998Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\POST_RELEASE.md",
+                                          "len":  1966,
+                                          "sha":  "055943050E0D7B5A",
+                                          "mtime":  "2026-11-22T02:30:04.1798170Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\README.md",
+                                          "len":  10495,
+                                          "sha":  "45397DBEDD721C0A",
+                                          "mtime":  "2026-11-22T03:41:24.4040963Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\RELEASE_CHECKLIST.md",
+                                          "len":  3339,
+                                          "sha":  "D28807C88B5D01D8",
+                                          "mtime":  "2026-11-22T03:41:24.4040963Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\SAMPLE_REPORT.csv",
+                                          "len":  919,
+                                          "sha":  "18082828EF16658C",
+                                          "mtime":  "2026-11-22T02:29:16.4193980Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\SAMPLE_REPORT.html",
+                                          "len":  6207,
+                                          "sha":  "41DC37C99FCB7146",
+                                          "mtime":  "2026-11-22T02:29:16.4183998Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\screenshots\\concept_A.png",
+                                          "len":  546679,
+                                          "sha":  "00A6805753872ACF",
+                                          "mtime":  "2026-11-22T02:10:22.7881819Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\screenshots\\live_real.png",
+                                          "len":  52622,
+                                          "sha":  "94C5CC114F878DC2",
+                                          "mtime":  "2026-11-22T02:37:34.1335078Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\screenshots\\live_sample.png",
+                                          "len":  89649,
+                                          "sha":  "D80F93B2A22D2692",
+                                          "mtime":  "2026-11-22T02:37:32.4967633Z"
+                                      },
+                                      {
+                                          "rel":  "docs\\screenshots\\report_preview.png",
+                                          "len":  88119,
+                                          "sha":  "393A28735A11B8B3",
+                                          "mtime":  "2026-11-22T02:30:03.3038175Z"
+                                      },
+                                      {
+                                          "rel":  "reports\\latest.csv",
+                                          "len":  223,
+                                          "sha":  "DF38EE22EC67A96F",
+                                          "mtime":  "2026-11-22T02:37:24.9731655Z"
+                                      },
+                                      {
+                                          "rel":  "reports\\latest.html",
+                                          "len":  4395,
+                                          "sha":  "79720ACAB5BBBCB5",
+                                          "mtime":  "2026-11-22T02:37:24.9731655Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\test_core.py",
+                                          "len":  16289,
+                                          "sha":  "55355556F8D8CD27",
+                                          "mtime":  "2026-11-22T03:40:37.7715689Z"
+                                      },
+                                      {
+                                          "rel":  "tests\\__pycache__\\test_core.cpython-312.pyc",
+                                          "len":  32481,
+                                          "sha":  "C2845FD99D92CF95",
+                                          "mtime":  "2026-11-22T03:40:54.0426651Z"
+                                      },
+                                      {
+                                          "rel":  "__pycache__\\detect.cpython-312.pyc",
+                                          "len":  12532,
+                                          "sha":  "3AFBAE154C21C045",
+                                          "mtime":  "2026-11-22T03:40:53.9356651Z"
+                                      },
+                                      {
+                                          "rel":  "__pycache__\\gui.cpython-312.pyc",
+                                          "len":  43654,
+                                          "sha":  "0684909877EE6966",
+                                          "mtime":  "2026-11-22T03:40:53.9306651Z"
+                                      },
+                                      {
+                                          "rel":  "__pycache__\\lanops.cpython-312.pyc",
+                                          "len":  14655,
+                                          "sha":  "359848AA923498ED",
+                                          "mtime":  "2026-11-22T03:40:53.9326653Z"
+                                      },
+                                      {
+                                          "rel":  "__pycache__\\ouidb.cpython-312.pyc",
+                                          "len":  7071,
+                                          "sha":  "E2F3EA944F08AAEA",
+                                          "mtime":  "2026-11-22T03:40:53.9476663Z"
+                                      },
+                                      {
+                                          "rel":  "__pycache__\\portscan.cpython-312.pyc",
+                                          "len":  4047,
+                                          "sha":  "9EC0CD148CDE2D93",
+                                          "mtime":  "2026-11-22T03:40:53.9416653Z"
+                                      },
+                                      {
+                                          "rel":  "__pycache__\\report.cpython-312.pyc",
+                                          "len":  15062,
+                                          "sha":  "376438C2C2AE580A",
+                                          "mtime":  "2026-11-22T03:40:53.9446728Z"
+                                      },
+                                      {
+                                          "rel":  "__pycache__\\scanner.cpython-312.pyc",
+                                          "len":  18279,
+                                          "sha":  "0D98067EA19A281D",
+                                          "mtime":  "2026-11-22T03:40:53.9396654Z"
+                                      },
+                                      {
+                                          "rel":  "__pycache__\\scheduler.cpython-312.pyc",
+                                          "len":  2795,
+                                          "sha":  "8852D07ABF13568C",
+                                          "mtime":  "2026-11-22T03:40:53.9456657Z"
+                                      },
+                                      {
+                                          "rel":  "__pycache__\\upstream.cpython-312.pyc",
+                                          "len":  19701,
+                                          "sha":  "D7E2F593131DA8BD",
+                                          "mtime":  "2026-11-22T03:40:53.9236676Z"
+                                      }
+                                  ],
+                        "count":  116,
+                        "exists":  true
+                    },
+                    {
+                        "path":  "C:\\Users\\Administrator\\.dsh\\im\\balance-remind.ps1",
+                        "files":  [
+                                      {
+                                          "rel":  "",
+                                          "len":  3273,
+                                          "sha":  "261238AFC9327D56",
+                                          "mtime":  "2026-11-06T16:44:06.8712851Z"
+                                      }
+                                  ],
+                        "count":  1,
+                        "exists":  true
+                    },
+                    {
+                        "path":  "C:\\Users\\Administrator\\.dsh\\im\\usage-report.ps1",
+                        "files":  [
+                                      {
+                                          "rel":  "",
+                                          "len":  3506,
+                                          "sha":  "AE7B50C4607651D7",
+                                          "mtime":  "2026-11-06T18:29:01.5925290Z"
+                                      }
+                                  ],
+                        "count":  1,
+                        "exists":  true
+                    },
+                    {
+                        "path":  "C:\\Users\\Administrator\\.dsh\\im\\monitor_sessions.js",
+                        "files":  [
+                                      {
+                                          "rel":  "",
+                                          "len":  3161,
+                                          "sha":  "BD3516EA1576140A",
+                                          "mtime":  "2026-11-22T01:55:11.2230042Z"
+                                      }
+                                  ],
+                        "count":  1,
+                        "exists":  true
+                    }
+                ]
+}

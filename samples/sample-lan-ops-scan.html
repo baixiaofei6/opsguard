@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>lan-ops-scan 内网巡检报告（样本）</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #f7f9fc; color: #1f2933; margin: 2rem; }
+  h1 { color: #1f4e79; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #d0d7de; padding: 6px 10px; text-align: left; }
+  footer { margin-top: 2rem; color: #6b7280; font-size: 12px; }
+</style>
+</head>
+<body>
+<h1>内网巡检报告 · 样本</h1>
+<p><strong>样本，非真实项目产物。</strong>本页为 OpsGuard C1 --ai 自包含演示用的浅色样本报告，模拟 lan-ops-scan 输出，用于演示脱敏与追加段落渲染。</p>
+<table>
+  <tr><th>项目</th><th>取值</th></tr>
+  <tr><td>巡检主机</td><td>WIN-CLIENT-17</td></tr>
+  <tr><td>管理网卡 MAC</td><td>00-1A-2B-3C-4D-5E</td></tr>
+  <tr><td>DNS 服务器</td><td>10.10.0.53</td></tr>
+  <tr><td>结果</td><td>发现 2 项异常</td></tr>
+</table>
+<footer>样本报告 · OpsGuard C1 演示专用</footer>
+
+<script type="application/json" id="opsguard-evidence">
+{
+  "source": "lan-ops-scan（浅色样本）",
+  "hosts": ["WIN-CLIENT-17", "win-client-17.office.local"],
+  "findings": [
+    {
+      "id": "LAN-014",
+      "title": "DNS 服务器指向不可达地址",
+      "level": "high",
+      "detail": "主机 WIN-CLIENT-17（MAC 00-1A-2B-3C-4D-5E）的接口 DNS 服务器 10.10.0.53 连续 3 次探测超时，疑似配置错误。",
+      "current": "DNS Servers: 10.10.0.53",
+      "expected": "DNS Servers: 192.168.1.1",
+      "hint": "Ethernet",
+      "intent": "require_confirm",
+      "suggest": "人工确认后把接口 Ethernet 的 DNS 改回网关 192.168.1.1"
+    },
+    {
+      "id": "LAN-021",
+      "title": "主机名为 FQDN 与短名混用",
+      "level": "low",
+      "detail": "巡检记录中 WIN-CLIENT-17 与 win-client-17.office.local 指向同一主机，建议统一命名口径。",
+      "current": "",
+      "expected": "",
+      "hint": "",
+      "intent": "readonly",
+      "suggest": "只读核对资产台账，统一使用 FQDN"
+    }
+  ]
+}
+</script>
+</body>
+</html>

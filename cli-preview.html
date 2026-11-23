@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0d1117; padding:18px; }
+  .win {
+    max-width:1000px; margin:0 auto; background:#0d1117;
+    border:1px solid #30363d; border-radius:10px; overflow:hidden;
+    box-shadow:0 12px 40px rgba(0,0,0,.5);
+  }
+  .bar { height:38px; background:#161b22; border-bottom:1px solid #30363d;
+    display:flex; align-items:center; padding:0 14px; gap:8px; }
+  .dot { width:12px; height:12px; border-radius:50%; }
+  .r{background:#ff5f56}.y{background:#ffbd2e}.g{background:#27c93f}
+  .title { color:#8b949e; font:12px ui-monospace,Consolas,monospace; margin-left:8px; }
+  .body { padding:16px 20px 22px; }
+  pre { margin:0 0 14px; color:#c9d1d9; font:13px/1.55 ui-monospace,SFMono-Regular,Consolas,"Courier New",monospace;
+    white-space:pre-wrap; word-break:break-word; }
+  .cmd { color:#58a6ff; }
+  .sec { color:#6e7681; }
+  .ok { color:#3fb950; }
+  .warn { color:#d29922; }
+  .key { color:#79c0ff; }
+  .str { color:#a5d6ff; }
+  .val { color:#ffa657; }
+  .exit { color:#f85149; }
+  .foot { color:#484f58; font:11px ui-monospace,monospace; padding:0 20px 16px; text-align:right; }
+</style>
+</head>
+<body>
+<div class="win">
+  <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="title">PowerShell / opsguard — 真实运行输出</span></div>
+  <div class="body">
+<pre><span class="sec">===== 1) opsguard --help =====</span>
+usage: opsguard [-h] [--config CONFIG] [--no-color]
+                {diagnose,explain,fix,rollback,audit,backend,doctor,install-local,integrate}
+                ...
+
+OpsGuard - 可证明安全的 Windows 运维 CLI（诊断/报告解读/带回滚修复）
+
+positional arguments:
+  {diagnose,explain,fix,rollback,audit,backend,doctor,install-local,integrate}
+    diagnose            ① 报错排障：只读诊断，给结论和建议
+    explain             ② 报告解读：脱敏→AI后端→回填→展示
+    fix                 ③ 带回滚修复：诊断→AST→确认→备份→执行→哈希
+    rollback            按 manifest 独立回滚 + 三方哈希验证
+    audit               查审计日志
+    backend             查看/选择 AI 后端状态
+    doctor              环境自检
+    install-local       本地模型安装(官方链接+确认+sha256)
+    integrate           为既有项目生成 --ai 补丁(默认不写回)
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG       指定配置文件路径
+  --no-color            关闭彩色输出</pre>
+
+<pre><span class="sec">===== 2) opsguard backend =====</span>
+{
+  <span class="key">"cloud"</span>: {
+    <span class="key">"available"</span>: <span class="val">false</span>,
+    <span class="key">"mode"</span>: <span class="str">"cloud"</span>,
+    <span class="key">"key_configured"</span>: <span class="val">false</span>
+  },
+  <span class="key">"local"</span>: {
+    <span class="key">"available"</span>: <span class="val">false</span>,
+    <span class="key">"mode"</span>: <span class="str">"local"</span>,
+    <span class="key">"base"</span>: <span class="str">"http://127.0.0.1:8080/v1"</span>
+  },
+  <span class="key">"rules"</span>: {
+    <span class="key">"available"</span>: <span class="val">true</span>,
+    <span class="key">"mode"</span>: <span class="str">"rules"</span>
+  },
+  <span class="key">"effective"</span>: <span class="str">"auto"</span>
+}</pre>
+
+<pre><span class="sec">===== 3) opsguard doctor =====</span>
+<span class="ok">[OK]</span>   python             3.12.14
+<span class="ok">[OK]</span>   powershell         5.1.26100.8655
+<span class="ok">[OK]</span>   pester             v3.4.0
+<span class="warn">[WARN]</span> cloud_key          not set -&gt; cloud mode unavailable
+<span class="warn">[WARN]</span> local_backend      not running; installed=False
+<span class="ok">[OK]</span>   write_permission   C:\Users\Administrator\.dsh\im\opsguard
+<span class="ok">[OK]</span>   effective_backend  auto</pre>
+
+<pre><span class="sec">===== 4) opsguard fix --sample error --confirm n =====</span>
+{
+  <span class="key">"finding"</span>: <span class="str">"DNS 服务器被指向不可达地址"</span>,
+  <span class="key">"command"</span>: <span class="str">"Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses 192.168.1.1"</span>,
+  <span class="key">"plain"</span>: <span class="str">"将把接口 12 的 DNS 从 203.0.113.254 改为 192.168.1.1."</span>,
+  <span class="key">"diff"</span>: {
+    <span class="key">"before"</span>: <span class="str">"DNS Servers: 203.0.113.254 (不可达)"</span>,
+    <span class="key">"after"</span>: <span class="str">"DNS Servers: 192.168.1.1 (可用)"</span>,
+    <span class="key">"unified"</span>: <span class="str">"--- 当前\n+++ 预期\n-DNS Servers: 203.0.113.254 (不可达)\n+DNS Servers: 192.168.1.1 (可用)"</span>
+  },
+  <span class="key">"ast_verdict"</span>: <span class="str">"require_confirm"</span>,
+  <span class="key">"ast_reason"</span>: <span class="str">"白名单命中: Set-DnsClientServerAddress (tier=require_confirm)"</span>,
+  <span class="key">"policy_decision"</span>: <span class="str">"confirm_required"</span>,
+  <span class="key">"mode"</span>: <span class="str">"DRY-RUN"</span>,
+  <span class="key">"target"</span>: <span class="str">"sandbox-fixture"</span>
+}
+<span class="exit">[exit=1]</span>  <span class="sec"># 1 = 需人工确认，默认不执行</span></pre>
+  </div>
+  <div class="foot">以上内容为本机真实运行输出 · 无图形界面 · 全部结构化文本/JSON</div>
+</div>
+</body>
+</html>

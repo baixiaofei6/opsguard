@@ -1,0 +1,20 @@
+# API Key 仓库：含明文凭据，绝不允许提交/交付/哈希
+.keystore/
+*.keys.json
+.keys-*.tmp
+
+# 备份/夹具/审计运行时产物
+src/backups/
+sandbox/
+__pycache__/
+*.pyc
+c3/audit/
+c3/fixtures/
+**/audit/*.jsonl
+
+# 一次性开发辅助脚本（非交付）
+_gh*.cjs
+_probe*.py
+_tmp*.py
+fix-golden-cleanup.py
+CON

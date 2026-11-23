@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>OpsGuard 阶段B · 视觉预览</title>
+<style>
+  :root{--ink:#1f2733;--sub:#5b6675;--line:#e3e8ef;--bg:#f5f7fa}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;padding:28px 34px}
+  h1{font-size:21px;margin:0 0 4px;font-weight:650}
+  .lead{color:var(--sub);font-size:13px;margin-bottom:22px}
+  .block{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:18px}
+  .block h2{font-size:15px;margin:0 0 3px;font-weight:650}
+  .block .q{font-size:12px;color:var(--sub);margin:0 0 14px}
+  .grid{display:grid;gap:12px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .opt{border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .opt .tag{font-size:11px;font-weight:700;padding:7px 10px;letter-spacing:.3px;border-bottom:1px solid var(--line)}
+  .rec .tag{background:#eaf4ee;color:#1a7a3c}
+  .opt .body{padding:12px}
+  .opt .desc{font-size:11px;color:var(--sub);line-height:1.55;margin-top:9px}
+  .host{font-size:10px;color:#8894a3;margin:6px 0 3px}
+  .card-light{background:#f8fafc;border:1px solid #e3e8ef;border-radius:6px;padding:8px;color:#263041;font-size:10px}
+  .card-dark{background:#0f1720;border:1px solid #24313f;border-radius:6px;padding:8px;color:#d7e2ee;font-size:10px}
+  .ai-h{font-weight:700;margin-bottom:5px;font-size:11px}
+  .row{font-size:10px;margin:3px 0;opacity:.9}
+  .lab{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;margin:3px 4px 3px 0;font-weight:600}
+  .ro{background:#e6f4ea;color:#1a7a3c}.cf{background:#fff3d6;color:#8a5a00}.dn{background:#fde8e8;color:#a11}.bk{background:#e8eef7;color:#3a5a8a}
+  .term{background:#0f1720;color:#d7e2ee;border-radius:6px;padding:12px;font-family:Consolas,monospace;font-size:10px;line-height:1.7}
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .col{border:1px solid #2c3b4b;border-radius:5px;padding:7px}
+  .col b{color:#7fd1a6;font-size:10px}
+  .print{font-size:10px;color:var(--sub);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+  .foot{font-size:11px;color:var(--sub);margin-top:6px}
+</style>
+</head>
+<body>
+  <h1>OpsGuard 阶段B · 3 处新视觉决策</h1>
+  <div class="lead">宪法八条与已拍板三处之外的新项 · 每处推荐方案 A（绿色标记）· 全为静态内联样式、零依赖</div>
+
+  <div class="block">
+    <h2>D-B-1　--ai 段落与既有报告的主题衔接</h2>
+    <p class="q">两个既有报告主题不同（lan-ops-scan 浅色 / WinDeploy 待确认）。追加段落用深用浅？</p>
+    <div class="grid g3">
+      <div class="opt rec">
+        <div class="tag">A · 自适应主题（推荐）</div>
+        <div class="body">
+          <div class="host">浅色宿主报告 ↓</div>
+          <div class="card-light"><div class="ai-h">AI 总结</div><div class="row">风险排序 · 建议动作</div></div>
+          <div class="host">深色宿主报告 ↓</div>
+          <div class="card-dark"><div class="ai-h">AI 总结</div><div class="row">风险排序 · 建议动作</div></div>
+          <div class="desc">探测宿主主题，浅配浅、深配深；探测不到默认浅色。不动主流程、不破坏原报告观感。两套静态 CSS。</div>
+        </div>
+      </div>
+      <div class="opt">
+        <div class="tag">B · 统一深色</div>
+        <div class="body">
+          <div class="host">任意宿主报告 ↓</div>
+          <div class="card-dark"><div class="ai-h">AI 总结</div><div class="row">风险排序 · 建议动作</div></div>
+          <div class="desc">一律贴深色 OpsGuard 块，视觉强一致、一眼同一产品；在浅色 lan-ops-scan 报告里突兀。</div>
+        </div>
+      </div>
+      <div class="opt">
+        <div class="tag">C · 统一浅色</div>
+        <div class="body">
+          <div class="host">任意宿主报告 ↓</div>
+          <div class="card-light"><div class="ai-h">AI 总结</div><div class="row">风险排序 · 建议动作</div></div>
+          <div class="desc">与 lan-ops-scan 融合，弱化安全产品气质，与 README 深色风格割裂。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>D-B-2　no-color 降级的三态标签形态</h2>
+    <p class="q">已定红黄绿灰蓝配色 + 必须保留纯文字降级；降级时标签长啥样、颜色要不要冗余？</p>
+    <div class="grid g3">
+      <div class="opt rec">
+        <div class="tag">A · 颜色 + 中文标签双通道（推荐）</div>
+        <div class="body">
+          <span class="lab ro">[只读]</span><span class="lab cf">[需确认]</span><span class="lab dn">[禁止·已拒]</span><span class="lab bk">[备份]</span><span class="lab bk">[日志]</span>
+          <div class="desc">有色无色都出文字标签，颜色只是增强。无障碍 + 录像可读，语义不靠颜色单独承载。有 Key 与否行为一致。</div>
+        </div>
+      </div>
+      <div class="opt">
+        <div class="tag">B · 仅颜色 / 仅英文标签</div>
+        <div class="body">
+          <span class="lab ro">READONLY</span><span class="lab cf">CONFIRM</span><span class="lab dn">DENY</span>
+          <div class="desc">输出更短；录像与无障碍下语义弱，颜色通道一丢就看不懂。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>D-B-3　三栏证据卡在报告末尾的取舍</h2>
+    <p class="q">三栏塞进报告，窄屏/打印（lan-ops-scan 有 A4 打印友好约束）会不会挤？</p>
+    <div class="grid g3">
+      <div class="opt rec">
+        <div class="tag">A · 响应式三栏（推荐）</div>
+        <div class="body">
+          <div class="term">
+            <div class="cols">
+              <div class="col"><b>AST 判定</b><br>三态·理由</div>
+              <div class="col"><b>diff</b><br>当前 vs 预期</div>
+              <div class="col"><b>回滚哈希</b><br>前/后/回滚后</div>
+            </div>
+          </div>
+          <div class="print">@media print → 自动切单栏列表</div>
+          <div class="desc">屏幕三栏保方案A观感，打印自动单栏兼顾 A4 友好。</div>
+        </div>
+      </div>
+      <div class="opt">
+        <div class="tag">B · 一律单栏</div>
+        <div class="body">
+          <div class="term">· AST 判定：三态·理由<br>· diff：当前 vs 预期<br>· 回滚哈希：前/后/回滚后</div>
+          <div class="desc">任何场景都紧凑列表，牺牲三栏视觉一致性。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">三处全选推荐 A 的话，回我「都按 A」即可；5 分钟内没回复我按 A 拍板并继续阶段 C。</div>
+</body>
+</html>

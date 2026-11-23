@@ -1,0 +1,37 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><style>*{box-sizing:border-box}html,body{margin:0;padding:0}body{background:#0d1117;padding:18px 16px;font-family:"SFMono-Regular",Consolas,"Cascadia Mono","Microsoft YaHei",monospace;font-size:15px;line-height:1.5;white-space:pre;overflow-x:hidden}</style></head><body><pre style="margin:0;font:inherit;white-space:pre"><span style="color:#8b949e;">  ·      ✦      ·        ·   </span><span style="color:#f0f6fc;font-weight:700;">✧</span><span style="color:#8b949e;">     ·   </span><span style="color:#f0f6fc;">·</span>  <span style="color:#f0f6fc;font-weight:700;">✦ OpsGuard  </span><span style="color:#8b949e;"> v1.0.0</span>
+<span style="color:#56b6c2;">       ╭─────────╮       </span><span style="color:#8b949e;">  ·</span><span style="color:#d29922;">   ╭──╮</span><span style="color:#8b949e;">  </span>  <span style="color:#8b949e;">   can prove safe · CLI</span>
+<span style="color:#b078dc;">     ╭╯ ╭─────╮ ╰╮  </span><span style="color:#58a6ff;font-weight:700;"> ◯</span><span style="color:#d29922;">═</span><span style="color:#f0f6fc;">    ✦</span>  <span style="color:#56b6c2;">   backend=rules</span>
+<span style="color:#56b6c2;">    ╭ </span><span style="color:#ffaa3c;">╭</span><span style="color:#ffebb4;font-weight:700;">●●●</span><span style="color:#ffaa3c;">╮</span><span style="color:#56b6c2;"> ╮   </span><span style="color:#8b949e;">  ·</span>  <span style="color:#6e7681;">   PS 5.1 · Pester 3.4</span>
+<span style="color:#56b6c2;">    ╰╮ </span><span style="color:#2e283a;">●</span><span style="color:#2e283a;">███</span><span style="color:#2e283a;">●</span><span style="color:#56b6c2;"> ╭╯ </span><span style="color:#8b949e;">    </span>  <span style="color:#8b949e;">   ~\opsguard</span>
+<span style="color:#b078dc;">      ╰──╯ ╰───╯     </span><span style="color:#8b949e;">   ·      ✧     ·  </span>  
+
+<span style="color:#58606e;">────────────────────────────────────────────────────────────────────────</span>
+<span style="color:#8b949e;">  /fix  ·  报错排障 / 带回滚修复        /help 查看全部 9 个子命令</span>
+<span style="color:#58606e;">────────────────────────────────────────────────────────────────────────</span>
+
+<span style="color:#a8b9eb;font-weight:700;">❯ </span><span style="color:#ffc66d;">DNS 又指到不可达地址了，帮我看看并修一下</span>
+
+<span style="color:#3fb950;font-weight:700;">  ⏺ </span><span style="color:#3fb950;font-weight:700;">diagnose</span><span style="color:#8b949e;">  scenario=fix  ·  evidence=DNS 203.0.113.254 unreachable</span>
+<span style="color:#56b6c2;font-weight:700;">● </span><span style="color:#f0f6fc;">诊断完成：DNS 服务器被指向不可达地址 203.0.113.254，建议改回 192.168.1.1。</span>
+
+<span style="color:#3fb950;font-weight:700;">  ⏺ </span><span style="color:#3fb950;font-weight:700;">ast_guard</span><span style="color:#8b949e;">  validate(Set-DnsClientServerAddress …)</span>
+<span style="color:#58606e;">  ┌─ AST VERDICT          ┬─ DIFF                   ┬─ ROLLBACK HASH     ┐</span>
+<span style="color:#58606e;">  │ </span><span style="color:#f85149;font-weight:700;">require_confirm</span>       <span style="color:#58606e;"> │ </span><span style="color:#f85149;">- DNS=203.0.113.254 UNREACHABLE</span><span style="color:#58606e;"> │ </span><span style="color:#8b949e;">before </span><span style="color:#a8b9eb;">3b7cc9d2d5</span>   <span style="color:#58606e;"> │</span>
+<span style="color:#58606e;">  │ </span><span style="color:#8b949e;">allowlist hit: Set-Dns</span><span style="color:#58606e;"> │ </span><span style="color:#3fb950;">+ DNS=192.168.1.1 OK</span>    <span style="color:#58606e;"> │ </span><span style="color:#6e7681;">after  (pending)</span>    <span style="color:#58606e;"> │</span>
+<span style="color:#58606e;">  │ </span><span style="color:#8b949e;">tier=require_confirm</span>  <span style="color:#58606e;"> │ </span><span style="color:#8b949e;">unified diff ready</span>      <span style="color:#58606e;"> │ </span><span style="color:#6e7681;">verify (pending)</span>    <span style="color:#58606e;"> │</span>
+<span style="color:#58606e;">  └────────────────────────┴──────────────────────────┴──────────────────────┘</span>
+
+<span style="color:#d29922;font-weight:700;">  ⚠ </span><span style="color:#f0f6fc;font-weight:700;">Confirm this change?  </span><span style="color:#8b949e;">修改类操作默认 N, 需人工确认</span>
+<span style="color:#56b6c2;">     Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses 192.168</span>
+
+<span style="color:#a8b9eb;font-weight:700;">  ❯ </span><span style="color:#f0f6fc;">1. Yes, allow this command</span>
+<span style="color:#8b949e;">    2. Yes, and don't ask again for this command</span>
+<span style="color:#8b949e;">    3. No, and tell OpsGuard what to do differently</span>
+
+<span style="color:#6e7681;">  Enter to confirm · ↑↓ to navigate · Esc to cancel</span>
+
+<span style="color:#f0f6fc;font-weight:700;">  ✦ OpsGuard</span><span style="color:#58606e;">  │  </span><span style="color:#56b6c2;">backend: rules</span><span style="color:#58606e;">  │  </span><span style="color:#8b949e;">ctx 12.4k</span><span style="color:#58606e;">  │  </span><span style="color:#8b949e;">PS 5.1</span><span style="color:#58606e;">  │  </span><span style="color:#d29922;">dry-run</span>
+<span style="color:#58606e;">  ╭────────────────────────────────────────────────────────────────────────╮</span>
+<span style="color:#58606e;">  │</span><span style="color:#6e7681;">  ❯ message OpsGuard...                                                 </span><span style="color:#58606e;">│</span>
+<span style="color:#58606e;">  ╰────────────────────────────────────────────────────────────────────────╯</span>
+</pre></body></html>
