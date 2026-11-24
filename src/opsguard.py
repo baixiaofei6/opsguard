@@ -35,6 +35,7 @@ import adapters.system as _adapter
 import doctor as _doctor
 import evidence as _evidence
 import net_rules as _net
+import ai_chat as _ai
 
 EXIT_OK, EXIT_CONFIRM, EXIT_DENY, EXIT_FROZEN, EXIT_ARGS, EXIT_BACKEND = 0, 1, 2, 3, 4, 5
 
@@ -189,6 +190,68 @@ def cmd_backend(args, cfg):
     st = factory.status(cfg, args.set_backend)
     _out(st)
     return EXIT_OK
+
+
+def cmd_ai(args, cfg):
+    """AI 排障对话: 角色锁定为服务器/电脑问题专家; 修复建议走 AST + 确认模式.
+
+    默认只给建议不执行(--execute 才执行); 默认夹具(--live 才真改).
+    manual: require_confirm 类要 --confirm y; auto: 免逐次问但仍走备份/哈希/回滚.
+    """
+    mode = _ai.normalize_confirm_mode(args.mode or cfg.get("ai_confirm_mode"))
+    text = args.message
+    if not text:
+        # 无 --message: 从 stdin 读一行(管道/交互都可)
+        try:
+            text = sys.stdin.readline().rstrip("\r\n")
+        except Exception:
+            text = ""
+    if not text or not text.strip():
+        _err("需要 --message <问题> 或从 stdin 输入一行")
+        return EXIT_ARGS
+    # 无 Key 前置提示(用户诉求): AI 对话要有云端 Key 才有意义。
+    # 显式 --backend rules 是用户故意用离线规则, 不拦; auto/cloud 没 Key 则明确引导添加,
+    # 不让 auto 静默降级成 rules 导致"AI 没生效"的错觉.
+    if args.backend != "rules" and not _ai.has_ai_key(cfg):
+        _out({"error": "no_ai_key", "hint": _ai.NO_KEY_HINT})
+        return EXIT_BACKEND
+    if mode == "auto" and not args.execute:
+        # auto 模式只在明确 --execute 时才自动执行; 否则也只给建议, 不偷偷改东西.
+        pass
+    chat = _ai.AIChat(cfg, backend=args.backend)
+    result = chat.send(text)
+    if "error" in result:
+        _err("AI 后端失败: " + result["error"])
+        return EXIT_BACKEND
+    plan = result.get("plan")
+    decision = _ai.decision_for(plan, mode, args.confirm, live=args.live) if plan else None
+    out = dict(result)
+    out["confirm_mode"] = mode
+    out["decision"] = decision
+    # 展示时去掉系统提示等冗余, 只留可核对字段.
+    if not args.execute:
+        out["note"] = "仅给建议, 未执行; 要执行加 --execute (manual 还要 --confirm y, 真改再加 --live)"
+        _out(out)
+        return EXIT_OK
+    if not decision or not decision.get("execute"):
+        out["note"] = "AI 建议未获执行授权: " + (decision.get("reason") if decision else "无可执行建议")
+        _out(out)
+        return EXIT_CONFIRM if (decision and decision.get("need_confirm")) else EXIT_DENY
+    # 执行: sandbox 与否由 --live 决定; 失败冻结/回滚交给适配器.
+    execution = _ai.execute_plan(plan, decision, sandbox_root=args.sandbox_root)
+    out["execution"] = execution
+    if args.rollback and execution.get("executed") and execution.get("result"):
+        manifest = (execution.get("result") or {}).get("manifest")
+        if manifest:
+            try:
+                with open(manifest, "r", encoding="utf-8-sig") as f:
+                    m = json.load(f)
+                out["rollback"] = _adapter.rollback(
+                    m, sandbox=not args.live, sandbox_root=args.sandbox_root)
+            except Exception as e:
+                out["rollback_error"] = str(e)[:120]
+    _out(out)
+    return EXIT_OK if execution.get("executed") else EXIT_FROZEN
 
 
 def _read_key_interactive(prompt="请输入 API Key（输入不显示）: "):
@@ -482,6 +545,17 @@ def build_parser():
     b = sub.add_parser("backend", help="查看/选择 AI 后端状态")
     b.add_argument("--set", dest="set_backend", choices=["auto", "cloud", "rules"])
     b.set_defaults(fn=cmd_backend)
+
+    ai = sub.add_parser("ai", help="AI 排障对话（服务器/电脑问题专家；修复建议走 AST + 确认模式）")
+    ai.add_argument("--message", help="问题/现象描述；省略则从 stdin 读一行")
+    ai.add_argument("--backend", choices=["auto", "cloud", "rules"], help="覆盖后端选择")
+    ai.add_argument("--mode", choices=["manual", "auto"], help="确认模式：manual 每次问 / auto 免逐次问")
+    ai.add_argument("--execute", action="store_true", help="执行 AI 修复建议（默认只给建议不执行）")
+    ai.add_argument("--confirm", help="manual 模式下人工确认：仅 y/yes 视为确认")
+    ai.add_argument("--live", action="store_true", help="真改系统（默认夹具演练；需 --execute --confirm y）")
+    ai.add_argument("--rollback", action="store_true", help="执行后立即回滚并做三方哈希验证")
+    ai.add_argument("--sandbox-root", help="夹具根目录(默认 opsguard/sandbox)")
+    ai.set_defaults(fn=cmd_ai)
 
     k = sub.add_parser("key", help="管理 API Key（输入/删除/更改，脱敏显示）")
     ks = k.add_subparsers(dest="key_action", parser_class=_Parser)

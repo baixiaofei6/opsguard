@@ -54,10 +54,22 @@ def one_round(rnd):
     check(r, "C1 unittest 14", rc == 0 and "OK" in out, lastline(out))
     rc, out = run([PY, "-m", "unittest", "test_c2", "-q"], cwd=os.path.join(BASE, "c2"))
     check(r, "C2 unittest 15", rc == 0 and "OK" in out, lastline(out))
-    # ---- Python unittest: 正式版 src/tests (169 = 162 + /do 核心功能菜单 TestDoMenu 7) ----
+    # ---- Python unittest: 正式版 src/tests (202 = 195 + 无Key提示 test_ai_chat 4 + CLI 2 + /do 1) ----
     rc, out = run([PY, "-m", "unittest", "discover", "-s", os.path.join(BASE, "src", "tests"),
                    "-p", "test_*.py", "-q"])
-    check(r, "Formal unittest 169", rc == 0 and "OK" in out, lastline(out))
+    check(r, "Formal unittest 202", rc == 0 and "OK" in out, lastline(out))
+
+    # ---- AI 排障对话：确认模式决策边界（纯内存，不出网不碰系统） ----
+    rc, out = run([PY, "-c",
+        "import sys;sys.path.insert(0,r'%s');"
+        "import ai_chat as a;"
+        "p={'executable':True,'ast_verdict':a._ast.REQUIRE_CONFIRM};"
+        "assert not a.decision_for(p,'manual',None)['execute'];"
+        "assert a.decision_for(p,'manual','y')['execute'];"
+        "assert a.decision_for(p,'auto')['execute'];"
+        "assert not a.decision_for({'executable':False,'ast_verdict':a._ast.DENY},'auto','y')['execute'];"
+        "print('ai decision ok')" % os.path.join(BASE, "src")])
+    check(r, "AI confirm mode boundary", rc == 0 and "ai decision ok" in out, lastline(out))
 
     # ---- Minecraft 联想引擎冒烟（ghost text + 回车采纳，纯内存） ----
     rc, out = run([PY, "-c",
@@ -78,7 +90,8 @@ def one_round(rnd):
     _denv["PYTHONIOENCODING"] = "utf-8"
     _cli_do = os.path.join(BASE, "src", "opsguard.py")
     try:
-        _dp_run = subprocess.run([PY, _cli_do, "--tui"], input="/do\n1\n/exit\n",
+        # 首项现在是 ★AI 排障对话(@ai), 第2项才是 diagnose 样例 → 输 2 验证功能菜单真跑。
+        _dp_run = subprocess.run([PY, _cli_do, "--tui"], input="/do\n2\n/exit\n",
                                  capture_output=True, text=True, encoding="utf-8",
                                  errors="replace", timeout=40, env=_denv)
         _do_out = (_dp_run.stdout or "") + (_dp_run.stderr or "")
@@ -162,6 +175,10 @@ def one_round(rnd):
     check(r, "CLI prices unknown exit4", krc == 4, "exit=%d" % krc)
     krc, kout = _krc(["key", "remove", "deepseek"])
     check(r, "CLI key remove", krc == 0 and '"action": "removed"' in kout, "exit=%d" % krc)
+    # 无 Key 时 ai 子命令明确提示先添加(隔离 keystore 已 remove, 为空).
+    krc, kout = _krc(["ai", "--message", "DNS 打不开"])
+    check(r, "CLI ai no-key hint", krc == 5 and "no_ai_key" in kout
+          and "key add" in kout and "verifykey1234567890" not in kout, "exit=%d" % krc)
     try:
         if os.path.isfile(_kp):
             os.remove(_kp)

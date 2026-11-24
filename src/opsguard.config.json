@@ -4,5 +4,6 @@
   "api_key_env": "OPSGUARD_API_KEY",
   "log_path": "logs/opsguard.log",
   "confirm_default": "no",
-  "timeout_sec": 30
+  "timeout_sec": 30,
+  "ai_confirm_mode": "manual"
 }

@@ -102,6 +102,7 @@ KNOWN_COMMANDS = {
     "diagnose", "explain", "fix", "rollback", "audit", "backend", "doctor",
     "astcheck", "sanitize", "selftest", "hashdemo", "netdiag", "integrate",
     "key", "model",  # API Key / 模型管理(也可在 TUI 用 /key /model 交互)
+    "ai",  # AI 排障对话(服务器/电脑问题专家)
 }
 
 
@@ -287,11 +288,16 @@ def status(cfg=None, mode="manual"):
     """状态栏只展示可从配置/上下文得到的事实, 不放写死的假数字。"""
     cfg = cfg or {}
     backend = cfg.get("backend", "auto")
+    ai_confirm = str(cfg.get("ai_confirm_mode") or "manual").lower()
+    if ai_confirm not in ("manual", "auto"):
+        ai_confirm = "manual"
+    # AI 修复确认模式: manual=每次问(安全默认) / auto=信任模式免逐次问(风险提示色)。
+    confirm_color = RED if ai_confirm == "auto" else YELLOW
     return line(
         S("  ✦ OpsGuard ", STAR, True), S(VERSION, GRAY, False), S("  │  ", BORDER, False),
         S("backend: " + str(backend), CYAN, False), S("  │  ", BORDER, False),
         S("mode: " + str(mode), GRAY, False), S("  │  ", BORDER, False),
-        S("confirm: N (default)", YELLOW, False),
+        S("AI确认: " + ai_confirm + ("(每次问)" if ai_confirm == "manual" else "(免问·信任)"), confirm_color, False),
     )
 
 
@@ -840,11 +846,13 @@ def _do_menu_items():
     except Exception:
         pass
     items = [
+        ("★ AI 排障对话   跟 AI 聊服务器/电脑问题（结论+依据+处置）", ["@ai"]),
         ("① 报错排障     只读诊断，给结论和修复建议", ["diagnose", "--sample", "error"]),
         ("② 断网排障     16 类根因决策树（只读）", ["netdiag", "--symptom", "dns", "--top", "3"]),
     ]
     if sample:
-        items.append(("③ 报告解读     脱敏 → 规则后端 → 回填 → 展示（离线可跑）", ["explain", "--report", sample, "--backend", "rules"]))
+        # 不再写死 --backend rules: 有 Key 走 AI、没 Key 才降级离线规则(修"AI 没生效"的 bug)。
+        items.append(("③ 报告解读     脱敏 → AI后端(有Key走AI) → 回填 → 展示", ["explain", "--report", sample]))
     items += [
         ("④ 带回滚修复   诊断 → AST → 确认 → 备份 → 哈希（演练，不真改）", ["fix", "--sample", "fix"]),
         ("⑤ AST 拦截演示 混淆变体逐条拦（deny 侧证据）", ["astcheck"]),
@@ -1044,6 +1052,8 @@ def _with_confirm(tokens):
 def _help_lines():
     return [
         plain("  /do  ★ 看 OpsGuard 能做什么（方向键菜单 + 真实样例试跑）", MOON, True),
+        plain("  /ai  ★ AI 排障对话（服务器/电脑问题专家；给结论+依据+处置建议）", MOON, True),
+        plain("  /aimode [manual|auto]  AI 修复确认模式（manual 每次问 / auto 信任免问）", MOON, True),
         plain("  Commands:", NAME, True),
         plain("    diagnose / explain / fix / netdiag / rollback / audit / backend / doctor", GRAY),
         plain("    selftest / astcheck / sanitize / hashdemo / integrate", GRAY),
@@ -1141,6 +1151,97 @@ def _handle_config(raw, cfg, emit):
             emit([plain("  写配置失败: %s" % str(e)[:80], RED)])
         return
     emit([plain("  用法: /config 或 /config set <key> <value>", DIM)])
+
+
+def ai_mode_of(cfg):
+    """当前 AI 修复确认模式: manual(每次问) / auto(信任免问). 非法退回 manual."""
+    try:
+        import ai_chat as _aim
+        return _aim.normalize_confirm_mode((cfg or {}).get("ai_confirm_mode"))
+    except Exception:
+        v = str((cfg or {}).get("ai_confirm_mode") or "manual").lower()
+        return v if v in ("manual", "auto") else "manual"
+
+
+def handle_aimode(raw, cfg, emit, config_path=None):
+    """查看/切换 AI 修复确认模式, 并持久化到配置. readonly 由调用方拦.
+
+    config_path 可注入(测试隔离), 不传才用真实默认配置路径.
+    """
+    import json as _json
+    try:
+        import config as _c
+        path = config_path or _c.DEFAULT_CONFIG_PATH
+    except Exception:
+        emit([plain("  config 模块不可用", YELLOW)])
+        return
+    parts = raw.split()
+    if len(parts) == 1:
+        m = ai_mode_of(cfg)
+        emit([
+            plain("  ── AI 修复确认模式 ──────────────────", CYAN),
+            plain("  当前: %s" % m, GREEN if m == "manual" else RED, True),
+            plain("    manual = 每次改配置前都问你 y/N（默认，推荐）", GRAY),
+            plain("    auto   = 信任模式，AI 自动执行改配置（仍走 AST/备份/哈希/回滚）", GRAY),
+            plain("  用法: /aimode manual | /aimode auto", DIM),
+        ])
+        return
+    val = parts[1].lower() if len(parts) > 1 else ""
+    if val not in ("manual", "auto"):
+        emit([plain("  仅支持 /aimode manual 或 /aimode auto", YELLOW)])
+        return
+    old_val = cfg.get("ai_confirm_mode")
+    cfg["ai_confirm_mode"] = val
+    ok, err = (_c.save(cfg, path) if hasattr(_c, "save") else (False, "config.save 不可用"))
+    if not ok:
+        # 写失败: 内存态回退, 免得显示已切换但实际没落盘
+        cfg["ai_confirm_mode"] = old_val
+    if ok:
+        emit([plain("  AI 确认模式已设为 %s（已持久化）" % val,
+                    GREEN if val == "manual" else RED, True)])
+        if val == "auto":
+            emit([plain("  提醒: auto 下 AI 改配置不再逐次问，AST/备份/回滚照旧。", YELLOW)])
+    else:
+        emit([plain("  切换失败: %s" % (err or "写配置失败"), RED)])
+
+
+def ai_welcome_lines(cfg):
+    m = ai_mode_of(cfg)
+    return [
+        plain("  ── AI 排障对话 ─────────────────────────", MOON, True),
+        plain("  我是 OpsGuard 排障专家，只管服务器和电脑问题：系统/网络/服务/注册表/DNS/网卡。", GRAY),
+        plain("  直接描述现象或贴报错，我给结论+依据+处置建议；建议要改配置时走 AST 校验+备份+回滚。", GRAY),
+        plain("  当前确认模式: %s" % ("manual（每次改前问你 y/N）" if m == "manual" else "auto（信任模式，免逐次问）"),
+              GREEN if m == "manual" else RED, True),
+        plain("  /aimode manual|auto 切换模式 · /back 退出对话 · /help 帮助", DIM),
+    ]
+
+
+def ai_action_lines(result):
+    """把 AI 的修复建议/判定展示成清晰可核对的几行。"""
+    lines = []
+    plan = result.get("plan")
+    reply = result.get("reply") or ""
+    for l in reply.rstrip().split("\n")[:24]:
+        lines.append(plain("  " + l, NAME))
+    meta = []
+    if result.get("backend"):
+        meta.append("后端 " + str(result["backend"]))
+    if result.get("fallback_from"):
+        meta.append("降级 " + str(result["fallback_from"]))
+    if result.get("redaction_applied"):
+        meta.append("已脱敏 %s 项" % result.get("mapping_count", 0))
+    if meta:
+        lines.append(plain("  （" + " · ".join(meta) + "）", DIM))
+    if plan:
+        a = plan.get("action") or {}
+        lines.append(plain("  ── AI 建议的动作 ──", CYAN))
+        lines.append(plain("    命令: %s" % a.get("command", "?"), GRAY))
+        lines.append(plain("    类型: %s   目标: %s" % (a.get("kind", "?"), a.get("target", "?")), GRAY))
+        lines.append(plain("    理由: %s" % a.get("reason", "（无）"), GRAY))
+        lines.append(plain("    AST:  %s  %s" % (plan.get("ast_verdict", "?"), plan.get("ast_reason", "")),
+                           GREEN if plan.get("executable") else RED))
+    return lines
 
 
 def _keystore_view(emit):
@@ -1422,11 +1523,12 @@ def _handle_model(raw, emit):
     emit([plain("  用法: /model use|add|remove <服务商> <模型>", YELLOW)])
 
 
-def run_repl(cfg=None, dispatcher=None):
+def run_repl(cfg=None, dispatcher=None, config_path=None):
     """宇宙 logo 品牌头 + Claude Code 风格持续交互.
 
     dispatcher(argv:list[str]) -> int(exit_code), 由 opsguard.main 注入.
-    支持: 折叠/展开 verbose、/config 设置、确认菜单、只读权限模式、命令历史.
+    config_path 可注入(测试隔离 /aimode 落盘路径), 不传用默认配置.
+    支持: 折叠/展开 verbose、/config 设置、确认菜单、只读权限模式、命令历史、AI 对话.
     """
     global ANSI_OK
     cfg = cfg or {}
@@ -1444,7 +1546,12 @@ def run_repl(cfg=None, dispatcher=None):
     verbose = False
     perm_mode = "manual"  # manual | readonly; 不提供 auto/bypass(安全红线)
     history = []
-    pending = None  # 等待确认: {"tokens": [...], "info": {...}}
+    pending = None  # 命令确认态: {"tokens": [...], "info": {...}}
+    # AI 排障对话态: 进入后每句话都发给 AI, 不当命令解析.
+    ai_active = False
+    ai_obj = None
+    ai_last_plan = None     # 最近一次 AI 给的修复建议(AST 判定后)
+    ai_pending = None       # AI 建议的 manual 确认态: {"plan":..., "live":...}
 
     def emit(lines):
         try:
@@ -1456,7 +1563,7 @@ def run_repl(cfg=None, dispatcher=None):
         _out(render(banner(cfg)) + "\n\n")
         _out(render([
             rule(),
-            plain("  /do 看功能 · /help 命令 · /verbose 展开折叠(≈Ctrl+O) · /config 设置 · /exit 退出", GRAY),
+            plain("  /do 看功能 · /ai 排障对话 · /help 命令 · /verbose 展开 · /config 设置 · /exit 退出", GRAY),
             rule(),
         ]) + "\n\n")
     except Exception:
@@ -1467,7 +1574,7 @@ def run_repl(cfg=None, dispatcher=None):
             # 吃掉用户的选择。命令输入态才开 Minecraft 式淡字联想。
             editor = LineEditor(prompt="❯ ", history=history, emit=emit,
                                 writer=lambda txt: _out(txt),
-                                autosuggest=(pending is None))
+                                autosuggest=(pending is None and ai_pending is None and not ai_active))
             raw = editor.edit()
             if raw is None:
                 _out("\n")
@@ -1527,6 +1634,92 @@ def run_repl(cfg=None, dispatcher=None):
             emit([plain("  请只输入 y / N / d / a（默认 N，取消）。其余输入不生效。", YELLOW)])
             continue
 
+        # ---- AI 建议的确认态(manual): AI 说要改配置后, 在这里等人工 y/N ----
+        if ai_pending is not None:
+            if low in ("/exit", "exit", "quit", "/quit", "/back"):
+                emit([plain("  已取消 AI 修复建议，未执行任何改动。", YELLOW)])
+                ai_pending = None
+                if low in ("/exit", "exit", "quit", "/quit"):
+                    break
+                continue
+            if low in ("y", "yes"):
+                try:
+                    import ai_chat as _aim
+                    dec = _aim.decision_for(ai_pending["plan"], "manual", "y", live=ai_pending.get("live"))
+                    exe = _aim.execute_plan(ai_pending["plan"], dec, sandbox_root=None)
+                except Exception as e:
+                    emit([plain("  执行失败: %s" % str(e)[:120], RED)])
+                    ai_pending = None
+                    continue
+                if exe.get("executed"):
+                    emit([plain("  ✓ 已执行（%s）。备份/哈希/回滚信息见下：" %
+                                ("LIVE 真改" if exe.get("live") else "夹具演练"), GREEN, True)])
+                    try:
+                        import json as _j
+                        emit([plain("  " + _j.dumps(exe.get("result"), ensure_ascii=False)[:600], GRAY)])
+                    except Exception:
+                        emit([plain("  " + str(exe.get("result"))[:600], GRAY)])
+                else:
+                    emit([plain("  未执行: %s" % exe.get("reason", "?"), YELLOW)])
+                ai_pending = None
+                continue
+            if low in ("n", "no", ""):
+                emit([plain("  已拒绝 AI 修复建议，未执行任何改动。", YELLOW)])
+                ai_pending = None
+                continue
+            if low == "a":
+                p = ai_pending["plan"]
+                emit([plain("  ── AST 判定 ──", CYAN),
+                      plain("  verdict: %s" % p.get("ast_verdict", "?"), GRAY),
+                      plain("  reason : %s" % p.get("ast_reason", ""), GRAY)])
+                continue
+            emit([plain("  请只输入 y 执行 / N 取消 / a 看 AST 理由。", YELLOW)])
+            continue
+
+        # ---- AI 排障对话态: 非命令, 每句发给 AI ----
+        if ai_active:
+            if low in ("/back", "back", "/exit", "exit", "quit", "/quit"):
+                ai_active = False
+                ai_obj = None
+                ai_last_plan = None
+                emit([plain("  已退出 AI 排障对话。", GRAY)])
+                if low in ("/exit", "exit", "quit", "/quit"):
+                    break
+                continue
+            if low.startswith("/aimode"):
+                handle_aimode(raw, cfg, emit, config_path=config_path)
+                continue
+            if low == "/help":
+                emit(ai_welcome_lines(cfg))
+                continue
+            try:
+                result = ai_obj.send(raw)
+            except Exception as e:
+                emit([line(S("  [AI 错误] ", RED, True), S(str(e)[:120], YELLOW))])
+                continue
+            if "error" in result:
+                emit([line(S("  [AI 错误] ", RED, True), S(result["error"], YELLOW))])
+                continue
+            emit(ai_action_lines(result))
+            plan = result.get("plan")
+            ai_last_plan = plan
+            if plan and plan.get("executable"):
+                mode = ai_mode_of(cfg)
+                if perm_mode == "readonly":
+                    emit([plain("  [readonly] 只读模式不执行修复。/mode manual 解锁。", YELLOW)])
+                elif mode == "manual":
+                    ai_pending = {"plan": plan, "live": False}
+                    emit([plain("  ── 是否执行这条修复？──", CYAN),
+                          plain("  [y] 执行（夹具演练，不碰真系统）  [N] 取消（默认）  [a] 看 AST 理由", GRAY),
+                          plain("  默认 N。真改系统需退出对话后用 CLI: ai --execute --live --confirm y", DIM)])
+                else:
+                    emit([plain("  [auto 信任模式] 需显式执行才动：退出对话用 CLI ai --execute 或改回 /aimode manual。", YELLOW)])
+            elif plan:
+                emit([plain("  ⛔ AST 拒绝该建议，不会执行（安全红线）。", RED, True)])
+            # 关键: AI 对话这一轮已处理完, 必须 continue, 否则会掉到下面的命令解析,
+            # 把用户的问题(如 "DNS 打不开")当命令报 [ARGS] 未知命令。
+            continue
+
         if low in ("/exit", "exit", "quit", "/quit"):
             break
         if low in ("/help", "help", "?"):
@@ -1535,6 +1728,33 @@ def run_repl(cfg=None, dispatcher=None):
         if low in ("/verbose", "/expand", "/v"):
             verbose = not verbose
             emit([plain("  verbose(展开详细输出) = %s" % ("ON" if verbose else "OFF"), CYAN)])
+            continue
+        if low.startswith("/aimode"):
+            # AI 修复确认模式切换: manual(每次问) / auto(信任免问). readonly 拦写.
+            if perm_mode == "readonly" and len(raw.split()) >= 2:
+                emit([plain("  [readonly] 只读模式不可切换确认模式。/mode manual 解锁。", YELLOW)])
+                continue
+            handle_aimode(raw, cfg, emit, config_path=config_path)
+            continue
+        if low in ("/ai", "ai", "/chat"):
+            # 无 Key 前置提示: 明确告诉用户先添加 Key, 不让 auto 静默降级成 rules.
+            try:
+                import ai_chat as _aim
+                if not _aim.has_ai_key(cfg):
+                    emit([plain("  " + _aim.NO_KEY_HINT, YELLOW)])
+                    continue
+                ai_obj = _aim.AIChat(cfg)
+                ai_active = True
+                ai_pending = None
+            except ImportError:
+                emit([plain("  AI 模块不可用。", RED)])
+                continue
+            except Exception as e:
+                emit([plain("  AI 模块不可用: %s" % str(e)[:100], RED)])
+                continue
+            if perm_mode == "readonly":
+                emit([plain("  [readonly] 只读模式可与 AI 对话，但不会执行任何修复。", YELLOW)])
+            emit(ai_welcome_lines(cfg))
             continue
         if low == "/mode":
             emit([plain("  权限模式: %s (manual / readonly; 无 auto/bypass——安全红线)" % perm_mode, CYAN)])
@@ -1573,6 +1793,24 @@ def run_repl(cfg=None, dispatcher=None):
             # 选中后把预置 argv 交给下面的统一 dispatch(折叠/确认/tag 全部复用).
             chosen = _handle_do(emit)
             if not chosen:
+                continue
+            if chosen and chosen[0] == "@ai":
+                # /do 里选中 AI 排障: 进入对话态(不是普通命令 dispatch)
+                try:
+                    import ai_chat as _aim
+                    if not _aim.has_ai_key(cfg):
+                        emit([plain("  " + _aim.NO_KEY_HINT, YELLOW)])
+                        continue
+                    ai_obj = _aim.AIChat(cfg)
+                    ai_active = True
+                    ai_pending = None
+                except ImportError:
+                    emit([plain("  AI 模块不可用。", RED)])
+                    continue
+                except Exception as e:
+                    emit([plain("  AI 模块不可用: %s" % str(e)[:100], RED)])
+                    continue
+                emit(ai_welcome_lines(cfg))
                 continue
             tokens = chosen
         else:

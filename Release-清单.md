@@ -2,8 +2,8 @@
 
 ## 版本
 
-- **版本号**：v0.2.0
-- 日期：2026-11-23
+- **版本号**：v0.2.1
+- 日期：2026-11-25
 - 定位：可回滚的 Windows 运维 CLI。v0.2.0 = v0.1.0 基础上按用户/GLM 反馈补齐证据链 + Claude Code 风格 TUI + 断网排障决策树，并**彻底移除本地模型**（用户决定）。
 
 ## 交付文件清单与 SHA256
@@ -12,22 +12,24 @@
 
 | 文件（相对 `opsguard/`） | 字节数 | SHA256 |
 |---|---|---|
-| `README.md` | 18941 | `13956c79e96550e4b529502b45241c4a97fdd055b19063cbd30a87a9df4dd024` |
-| `src/tui.py` | 72353 | `15bd936323767273506d15b3ef02f5118f99dcd978d0c77097364e9e6a8fef89` |
-| `src/tests/test_do_menu.py` | 4315 | `ea3917d6e08370b2e27c6b3f7c3cf41040b935ce59447f32c938b838ec581744` |
+| `README.md` | 21855 | `8de21b4a1793433db342315de3e08b413c2561f1d6d4e4dd2b00e18f86eda449` |
+| `src/tui.py` | 85043 | `73fa7a1d6250a20a8961f039f9e0acf4c43dc6890e89770724e6b7a5f8a51be1` |
+| `src/ai_chat.py` | 10559 | `7c989ead326c5b2930ee7e0d860e2204e84b543ad84c3721aeba1b112df95771` |
+| `src/tests/test_ai_chat.py` | 13134 | `6c05d1c0aacc890daa2e0a1bcf2b95c6bcfd3f78a7dc79d3b45bd84c901f099b` |
+| `src/tests/test_do_menu.py` | 6381 | `94bd08376307b9b618ab2db4672e02b3e634cfa5788750200140bd86aface772` |
 | `src/suggest.py` | 4022 | `055b1247468da90ae5e387ed7ce6141419b821c7f31e075811e51bbb3f5f46df` |
-| `src/opsguard.py` | 26495 | `fa40cde3f44c76b91072cdc75719314622abb64937ad5a498da8d7da8709471c` |
+| `src/opsguard.py` | 30557 | `991c3e2e56a5242c92dc96c9b6f72af2db72067e16b97c8acceda0e1320cea25` |
 | `src/pricing.py` | 11771 | `9a73b9860953d8b57a3a4d4aa0b1535a1da5bc0f2ab0ad4bc00fa0cbf32c9cb1` |
 | `src/keystore.py` | 19758 | `d09b6712290f5476e68ef5a888d703fef1219a4ae46453e72a5f6c2037b46e5c` |
 | `src/evidence.py` | 6832 | `9b7a61c84f0ce7b01cbd6b1bba9d4381592f86fe5d3a1c186d1aaf47939c064d` |
 | `src/net_rules.py` | 18839 | `2c3f7a3c09734de57c7645d2fdac23e7b2e705d1bd6ee3c0c14cae67b1a81396` |
-| `src/config.py` | 2171 | `8a6a5b29b6fe29521afeeffdde007051f4a160cdd86e568a25217f71fb297160` |
+| `src/config.py` | 2847 | `97ec9347473ee4ab1fde3675f86d3c179eed0aa67d3531d37933b3e7351f1b12` |
 | `src/doctor.py` | 4122 | `b209f2bfaa3ac8e529d74ef3c023077ea33e3a29c020f6339dcdb808f339048a` |
-| `src/backends/cloud.py` | 3058 | `8d29af6810e3fc9c145bf3c866af7614c6c9b23f2ed29b77638888a6d42489d5` |
+| `src/backends/cloud.py` | 3521 | `58ba0b8ca755bc9d68d386c3db493d2a29eb12dc4118f669c0e2d81d076ccc89` |
 | `src/backends/factory.py` | 3614 | `9c1a29203b46ecb3c466f7c044afd7123d1cc2ae3ff38c4da7a9f9122199b583` |
 | `src/backends/base.py` | 2649 | `51cf98d1c4ac5118df74aaabce63821a57580bfab036c63aef588041a21757d3` |
 | `src/adapters/system.py` | 4870 | `800494100d71225024efd8f1e5512dda416e3fbe6863cf5a3c0c88bec99d6725` |
-| `src/opsguard.config.json` | 187 | `d93d76129a67be1d0f54505d8c569c2928d398d9cf65c8213cdc7dbe6f904e30` |
+| `src/opsguard.config.json` | 225 | `e88107b6cc5a5b82539e49faa6f7f9e7fdcf2663600c2b5aba0e8b24845067fa` |
 | `TROUBLESHOOTING.md` | 7580 | `501e67ff85ec7cfbc57601b9442c9c41cf67a1b4e9c2e8ee051fba57166819b1` |
 | `回滚失败预案.md` | 3072 | `25c999cfc47779ad64eaf2b252076ebf426202e07838767a94ae679169f977fc` |
 | `运营建议.md` | 3677 | `841edfb3028b40f6303cc343ec17156676bedd1c1069ef0edde9e4579670f11f` |
@@ -64,6 +66,8 @@
 - **Minecraft 式淡字联想（本轮新增，用户「输入指令字母时像我的世界输入指令一样根据字母淡字联想，回车自动选择当前联想指令，每打一个字母联想一个相关联的指令」）**：新增零依赖 `src/suggest.py`——按命令词库(与 build_parser 对齐)+历史频率，每输入一个字母联想最相关命令/子命令/参数，返回要补到光标后的剩余串；`LineEditor` 加 `autosuggest` 开关与 ghost 淡字渲染——有 VT 用灰色 ANSI(`GHOST`)淡字显示在光标后 + 光标停在联想前，无 VT 降级成 `(联想:xxx)` 文字提示，非 tty 保留确定性 readline(不开联想兼容)。**第一次 Enter 采纳补全、再按一次 Enter 才执行**；完整命令/无联想时回车直接执行；光标不在行尾不联想；确认态(y/N/d/a)自动关闭联想避免吃掉选择。新增 test_suggest.py 11 项(前缀/完整命令不联/斜杠/子命令参数/历史加权/无网络/TUI采纳/光标中间不联/关闭联想)+ 验收脚本加 CLI autosuggest 冒烟项，单测 151→162、检查 25→26。
 - **主命令行编辑（本轮新增，用户「主命令也改吧，直接逆向 Claude 命令行看看它怎么做到的」）**：`src/tui.py` 新增 `LineEditor` + 扩展语义键流，`run_repl()` 主循环从 `input()` 换成行编辑器。真终端支持 ←→ 移光标、↑↓/Ctrl+P/N 翻历史、Home/End、Ctrl+A/E/K/U/W、Ctrl+Y、Alt+B/F、Ctrl+R 反搜、Esc 清空、回车提交；非 tty 保留 readline 兼容。键位依据官方文档 interactive-mode 的 Text editing / Command history 表（本机 claude.exe 是 Rust/Bun 打包，strings 只抓到确认文案、抓不到键位表，如实标注）。新增 `src/tests/test_line_editor.py` 22 项（纯注入按键流），单测 124→147。诚实边界：只做单行编辑，未做多行内光标分支/全屏导航/补全菜单；Windows 真键盘用 mock 覆盖、未做端到端真按键。
 - **/do 核心功能菜单（本轮新增，用户「我没看到这项目能干的功能，本身要有的功能也做的一样」）**：`src/tui.py` 加 `_do_menu_items()`/`_handle_do()`，输入 `/do` 弹方向键菜单，列出 12 项核心能力（报错排障/断网排障/报告解读/带回滚修复/AST 拦截/脱敏/回滚哈希/拦截矩阵/环境自检/后端/审计/--ai 补丁），每项一句人话说明 + 内置样例/隔离夹具 argv，选中即一键试跑真实效果并复用折叠/确认/tag。菜单绝无 `--live`/`--apply`，不碰真系统；`/help` 与启动横幅加入口。新增 test_do_menu.py 7 项（12 项逐项真跑退出码符合预期无 Traceback/无 live-apply/TUI 选择/Esc/无效序号/help），单测 162→169、检查 26→27。
+- **AI 排障对话 + 确认模式**（2026-11-24）：新增 `src/ai_chat.py`（运维专家角色锁定 / 修复建议解析 fail-closed / 多轮对话 / AST 判定 / manual-auto 决策 / 夹具执行）；CLI `ai` 子命令、TUI `/ai` 对话态 + `/aimode manual|auto` 切换（持久化+状态栏显示）、`/do` 加 ★AI 首项并修"报告解读写死 rules"的 bug；两模式都保留 AST/备份/哈希/回滚，auto 只免逐次问。新增 25 项单测，总 195。
+- **v0.2.1 无 Key 提示 + 发布清洁**（2026-11-25，本轮）：AI 对话需要云端 Key，没配时 CLI/TUI（含 `/do` 首项）明确提示先 `/key add`，不再静默降级成离线规则让人以为 AI 没用；显式 `--backend rules` 是故意用离线规则、不拦。新增 `ai_chat.has_ai_key()`/`NO_KEY_HINT`。单测 195→202。发布前清洁核查：真 Key 从未进任何发布物（git 历史/exe/zip/源码 grep 真 Key 特征 0 命中），交付文档里一处脱敏片段也清掉；发布物里 `sk-*` 全是测脱敏用的明显假字符串。exe 重打（launcher 补 ai_chat 依赖、版本号 v021→v022 触发重新释放），zip 升 v0.2.1。
 - **doctor 升级**：加脱敏映射目录可写 + 黄金测试集可跑两项自检；backend 加人话降级说明，doctor 显示 Key 来源与当前模型（不明文）。
 - **README 全套**：定位/快速开始/三场景/断网决策树/证据链命令/退出码/安全机制/FAQ（含"为什么不做本地模型"卖点）/非目标。
 - v0.1.0 历史：C1 脱敏层 + C2 诊断/AST + C3 安全执行器 + C4 MCP 占位 + D 文档；各阶段经父代理独立复核并修复真 bug（详见 `测试记录.md`）。

@@ -76,7 +76,10 @@ class TestDoMenu(unittest.TestCase):
 
     def test_every_item_runs_with_expected_exit_code(self):
         # 逐项真跑，确认每项预置 argv 都能出结果、退出码符合预期、无 traceback。
+        # "@ai" 是对话态标记, 不是 CLI argv(由 run_repl 转成 AIChat), 跳过。
         for label, argv in tui._do_menu_items():
+            if argv and argv[0] == "@ai":
+                continue
             with self.subTest(argv=argv):
                 rc, out, err = run_cli(argv)
                 self.assertEqual(rc, EXPECTED_RC[argv[0]],
@@ -90,11 +93,48 @@ class TestDoMenu(unittest.TestCase):
             self.assertNotIn("--apply", argv, "菜单项不得含 --apply: %s" % argv)
 
     def test_tui_do_select_first_runs_diagnose(self):
-        rc, out, err = run_tui("/do\n1\n/exit\n")
+        # 菜单首项现在是 ★AI 排障对话, "①报错排障"是第2项 → 输 2 才是 diagnose 样例。
+        rc, out, err = run_tui("/do\n2\n/exit\n")
         self.assertEqual(rc, 0)
         self.assertIn("OpsGuard 能做什么", out)
         self.assertIn("[OK]", out)
         self.assertIn("识别 2 项异常", out)
+        self.assertEqual(err, "")
+
+    def test_tui_do_ai_item_enters_chat(self):
+        # /do 首项 ★AI 排障对话: 选中后进入对话态, 显示专家角色说明。
+        # 注入一把假 Key(隔离 keystore)让 /ai 能进对话态; 无 Key 场景由 test_ai_chat 覆盖。
+        import json
+        env = os.environ.copy()
+        env["PYTHONIOENCODING"] = "utf-8"
+        env.pop("OPSGUARD_API_KEY", None)
+        d = tempfile.mkdtemp(prefix="og-doai-")
+        keyfile = os.path.join(d, "keys.json")
+        with open(keyfile, "w", encoding="utf-8") as f:
+            json.dump({"version": 1,
+                       "providers": {"demo": {"api_base": "https://x.invalid/v1",
+                                              "key": "sk-fake-only-for-test", "models": ["m"]}},
+                       "active": {"provider": "demo", "model": "m"}}, f)
+        env["OPSGUARD_KEYSTORE"] = keyfile
+        try:
+            p = subprocess.run([PY, OPS, "--tui"], cwd=ROOT, input="/do\n1\n/back\n/exit\n",
+                               capture_output=True, encoding="utf-8", errors="replace",
+                               timeout=40, env=env)
+            rc, out, err = p.returncode, p.stdout, p.stderr
+        finally:
+            _cleanup(d, keyfile)
+        self.assertEqual(rc, 0)
+        self.assertIn("AI 排障对话", out)
+        self.assertIn("服务器和电脑问题", out)
+        self.assertEqual(err, "")
+
+    def test_tui_do_ai_without_key_shows_hint(self):
+        # /do 选 AI 但没 Key: 明确提示先 /key add, 不进对话态。
+        rc, out, err = run_tui("/do\n1\n/exit\n")
+        self.assertEqual(rc, 0)
+        self.assertIn("没有配置 AI Key", out)
+        self.assertIn("/key add", out)
+        self.assertNotIn("服务器和电脑问题", out)
         self.assertEqual(err, "")
 
     def test_tui_do_esc_skips(self):

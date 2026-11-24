@@ -35,10 +35,15 @@ class CloudBackend(BaseBackend):
             raise BackendError("云端后端未配置 Key (设环境变量 " +
                                (self.cfg.get("api_key_env") or "OPSGUARD_API_KEY") + ")")
         url = self.api_base + "/chat/completions"
+        # 支持 AI 排障对话传入的角色锁定 system; 普通 ask() 不带则用默认.
+        # 注意: 绝不接受 opts["messages"] 原样透传——那些历史是本地已回填的明文,
+        # 直接塞进请求会绕过 BaseBackend 的统一脱敏出口。多轮历史由调用方拼进
+        # redacted_text(已整体脱敏), 用「用户:/OpsGuard:」前缀区分角色, 这里只发两条。
+        system = opts.get("system") or "你是 Windows 运维助手 OpsGuard。只基于给定证据回答，不臆造。"
         payload = {
             "model": opts.get("model") or self.model,
             "messages": [
-                {"role": "system", "content": "你是 Windows 运维助手 OpsGuard。只基于给定证据回答，不臆造。"},
+                {"role": "system", "content": system},
                 {"role": "user", "content": redacted_text},
             ],
             "temperature": 0.2,

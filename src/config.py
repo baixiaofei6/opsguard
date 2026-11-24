@@ -16,6 +16,7 @@ DEFAULTS = {
     "log_path": "logs/opsguard.log",
     "confirm_default": "no",                 # 恒为 no; 仅为显式记录, 不作为可跳过开关
     "timeout_sec": 30,
+    "ai_confirm_mode": "manual",             # AI 修复执行: manual 每次确认 / auto 信任模式免逐次问
 }
 
 
@@ -40,6 +41,23 @@ def api_key(cfg):
     """从环境变量读 Key 本体; 没有返回空串. 绝不以任何形式写入配置文件。"""
     env_name = cfg.get("api_key_env") or DEFAULTS["api_key_env"]
     return os.environ.get(env_name, "") or ""
+
+
+def save(cfg, path=None):
+    """把配置写回 json(只写白名单字段). 返回 (ok, msg). 不写任何 Key 明文."""
+    p = path or DEFAULT_CONFIG_PATH
+    data = dict(cfg)
+    # 只落白名单字段, 防止调用方误塞敏感值进配置.
+    safe = {}
+    for k in DEFAULTS:
+        if k in data:
+            safe[k] = data[k]
+    try:
+        with open(p, "w", encoding="utf-8") as f:
+            json.dump(safe, f, ensure_ascii=False, indent=2)
+        return True, ""
+    except (OSError, ValueError) as e:
+        return False, str(e)[:120]
 
 
 def effective_backend(cfg, override=None):

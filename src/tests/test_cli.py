@@ -411,5 +411,31 @@ class TestBackendErrorCaught(unittest.TestCase):
         self.assertIn("OK", p.stdout)
 
 
+class TestCLINoAIKey(unittest.TestCase):
+    """ai 子命令无 Key 时明确提示先添加, 不静默降级(隔离 keystore, 不出网)."""
+    def test_ai_without_key_exits5_with_hint(self):
+        with tempfile.TemporaryDirectory(prefix="og-nokey-") as d:
+            env = os.environ.copy()
+            env["OPSGUARD_KEYSTORE"] = os.path.join(d, "keys.json")
+            env["PYTHONIOENCODING"] = "utf-8"
+            env.pop("OPSGUARD_API_KEY", None)
+            rc, out, err = run_env(["ai", "--message", "DNS 打不开"], env)
+            self.assertEqual(rc, 5, out + err)          # EXIT_BACKEND
+            self.assertIn("no_ai_key", out)
+            self.assertIn("key add", out)
+            self.assertNotIn("Traceback", out + err)
+
+    def test_ai_explicit_rules_backend_allowed_without_key(self):
+        """显式 --backend rules 是用户故意用离线规则, 不拦(不返回 no_ai_key)."""
+        with tempfile.TemporaryDirectory(prefix="og-nokey-") as d:
+            env = os.environ.copy()
+            env["OPSGUARD_KEYSTORE"] = os.path.join(d, "keys.json")
+            env["PYTHONIOENCODING"] = "utf-8"
+            env.pop("OPSGUARD_API_KEY", None)
+            rc, out, err = run_env(["ai", "--message", "DNS 打不开", "--backend", "rules"], env)
+            self.assertNotIn("no_ai_key", out)
+            self.assertNotEqual(rc, 5, out + err)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
